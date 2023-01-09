@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- com/smhrd/database/db.properties를 참조하여 변수 지정 -->
+	<!-- 커넥션을 하기 위한 경로 및 정보 설정 -->
+	<properties resource="com/smhrd/db/db.properties"></properties>
+	<!-- mapper의 parameterType 경로를 별칭으로 지정해보자! typeAliases -->
+	<typeAliases>
+	</typeAliases>
+	<!-- mybatis의 커넥션 역할설정 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<!-- 참조값 지정 -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- JoinService 서블렛의 Mapper 경로 지정!! -->
+	<mappers>
+		<mapper resource="com/smhrd/db/mapper.xml" />
+	</mappers>
+</configuration>

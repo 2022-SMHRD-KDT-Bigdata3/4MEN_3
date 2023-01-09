@@ -1,0 +1,232 @@
+/* 텍스트 애니메이션 적용 */
+@keyframes showtext{
+    from {
+        
+        transfrom : translateY(10px);
+        opacity: 0;
+    }
+    to{
+        transfrom : translateY(0px);
+        opacity: 1;
+    }
+}
+
+
+/* 전체 선택 */
+*{
+    font-family: 'Noto Sans KR', sans-serif; /*폰트*/
+    list-style: none; /* 목록에 점 없애는 기능*/
+    text-decoration: none; /* 텍스트에 밑줄 없애는 기능 */
+    border-collapse:collapse;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
+/* 배경화면 이미지 */
+#intro_bg{
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../imges/introbg.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+
+
+#header{
+    display: flex;
+    width: 1400px;
+    margin: auto;
+    height: 86px;
+} 
+#platform{
+    display: flex;
+    width: 350px;
+    height: 40px;
+    margin-top: 24px;
+    animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
+}
+#platform > h3 > a{
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px 8px rgb(26, 26, 26);
+}
+
+/* 로그인 헤더*/
+#nav{
+    display: flex;
+    justify-content: flex-end;
+    line-height: 86px;
+    width: calc(1400px - 300px);
+}
+
+/* 로그인창 */
+#nav > li{
+    margin-left: 25px;
+}
+#nav > li > a{
+    font-weight: bold;
+    color: white;
+    animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
+}
+#nav > li > a:hover{
+    color: lightskyblue;
+}
+/* 가운데 텍스트 */
+#intro_text{
+    width: 100%;
+    margin: 180px auto 180px auto;
+    text-align: center;
+}
+#intro_text > h1{
+    color: white;
+    text-shadow: 2px 2px 10px rgb(26, 26, 26);
+    font-size: 48px;
+    font-weight: 100;
+    animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
+}
+
+/* 데이터 정보 */
+#list_data{
+    position: relative;
+    top: -120px;
+    width: 1280px;
+    display: flex;
+    margin: auto;
+    animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
+}
+#list_data > li{
+    flex: 1; /*구역에 한자리씩 차지*/
+    height: 132px;
+}
+#list_data > li > div{
+    text-align: center;
+    margin-top: 20px;
+    height: 50px;
+}
+#list_data > li:not(:last-child) > div{ /* 데이터 마지막 보더 빼기 */
+    border-right: 1px solid white ;
+}
+#list_text1{
+    font-size: 15px;
+    font-weight: 100;
+    color: white;
+}
+#list_text2{
+    font-size: 15px;
+    font-weight: 100;
+    color: white;
+}
+#list_text3{
+    font-size: 30px;
+    font-weight: lighter;
+    color: white;
+}
+
+/* 아이콘 태그 정보 시작 */
+#icon_tag{
+    position: relative;
+    display: flex;
+    margin: auto;
+    width: 1280px;
+    top: 50px;
+    animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
+}
+#icon_tag > li{
+    flex: 1;
+    height: 100px;
+}
+#icon_tag > li > div{
+    text-align: center;
+    margin-top: 20px;
+    height: 50px;
+}
+#img_t{
+    position: relative;
+    margin: auto;
+    width: 45px;
+    height: 45px;
+}
+/* 아이콘 태그 정보 끝 */
+
+
+
+/* 탑 업 다운 버튼 시작점 */
+#btn_top{
+    position: fixed;
+    right: 10px;
+    bottom: 20px;
+    z-index: 999;    /* 레이어 숫자가 클수록 제일 위에 위치 */
+    cursor: pointer; /*  커서 포인트*/
+    opacity: 0.7;
+    border-radius: 50%; /* 모서리 라운드 */
+}
+#btn_top:hover{
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+
+
+/* Main Page */
+.title_size{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+/* 페이지 목록 정리 */
+.title_size:nth-last-of-type(5) { 
+    background-color: lightgray;
+}
+.title_size:nth-last-of-type(4) { 
+    background-color: lightslategray;
+}
+.title_size:nth-last-of-type(3) { 
+    background-color: lightgray;
+}
+.title_size:nth-last-of-type(2) { 
+    background-color: lightslategray;
+}
+.title_size:nth-last-of-type(1) { 
+    background-color: lightgray;
+}
+/* page 제목*/
+#pg1-title > h2 {
+    padding-top: 40px;
+    margin-left: 200px;
+    font-size: 50px;
+}
+/* page 내용*/
+#pg1-title > h3 {
+    width: 1000px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 200px;
+    font-size: 20px;
+}
+
+/* 뉴스 슬라이드 정보 구현 */
+.swiper {
+    width: 100%;
+    height: 400px;
+    margin: 120px auto;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+
