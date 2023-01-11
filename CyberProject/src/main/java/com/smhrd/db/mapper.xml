@@ -2,6 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.db.mapper">
 	<insert id="join" parameterType="com.smhrd.model.memberVO">
-		insert into T_MEMBER values(#{U_ID},#{PW})
+		insert into T_MEMBER values(#{u_id},#{pw})
 	</insert>
+
+	<select id="login" parameterType="com.smhrd.model.memberVO" resultType="com.smhrd.model.memberVO">
+		select * from T_MEMBER where u_id = #{u_id} and pw = #{pw}
+	</select>
+	
+	<select id="idcheck" parameterType="String"	resultType="com.smhrd.model.memberVO">
+		select * from T_MEMBER where u_id = #{u_id}
+	</select>
+	
+	<select id="memberlist" resultType="com.smhrd.model.memberVO">
+		select * from T_MEMBER where u_id not in ('admin')
+	</select>
+	
+	<delete id="memberremove" parameterType="String">
+		delete from T_MEMBER where u_id = #{u_id}
+	</delete>
+	
+	<update id="update" parameterType="com.smhrd.model.memberVO">
+		update T_MEMBER set pw = #{pw} where u_id = #{u_id}
+	</update>
+
 </mapper>

@@ -61,17 +61,55 @@
 }
 
 /* 로그인창 */
-#nav > li{
+#nav > button{
     margin-left: 25px;
 }
-#nav > li > a{
+#nav > li > button, #nav>li>a{
     font-weight: bold;
     color: white;
-    animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
+    background-color: rgb(32, 37, 74);
+    font-size: 15px;
+    animation: showtext 2s;
+
+    border: none;
 }
-#nav > li > a:hover{
+#nav > li > button:hover, #nav>li>a:hover {
     color: lightskyblue;
 }
+
+#idcheck{
+  border-color: rgb(59, 59, 252);
+  color: #fff;
+  box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
+  transition: all 150ms ease-in-out;
+  float: right;
+  width: 25%;
+  display: block;
+  border: none;
+  padding: 0px 10px;
+  background: rgba(255, 255, 255, .1);
+}
+
+#idcheck:hover{
+  box-shadow: 0 0 10px 0 rgb(59, 59, 252) inset, 0 0 10px 4px rgb(59, 59, 252);
+}
+
+
+body{
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* 텍스트 간격 띄우기 */
+#a {
+	margin-right: 40px;
+	cursor: pointer;
+}
+
+
 /* 가운데 텍스트 */
 #intro_text{
     width: 100%;
@@ -92,7 +130,7 @@
     top: -120px;
     width: 1280px;
     display: flex;
-    margin: auto;
+    margin: auto;	
     animation: showtext 2s; /* 3초 뒤 텍스트 표시*/
 }
 #list_data > li{
@@ -121,6 +159,7 @@
     font-size: 30px;
     font-weight: lighter;
     color: white;
+    float: none;
 }
 
 /* 아이콘 태그 정보 시작 */
@@ -148,6 +187,8 @@
     height: 45px;
 }
 /* 아이콘 태그 정보 끝 */
+
+
 
 
 
@@ -228,5 +269,8 @@
     -webkit-align-items: center;
     align-items: center;
 }
+
+
+
 
 

@@ -1,151 +1,312 @@
-*, :after, :before {
-	box-sizing: border-box;
-	list-style: none; /* 목록에 점 없애는 기능*/
-    text-decoration: none; /* 텍스트에 밑줄 없애는 기능 */
-    border-collapse:collapse;
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-    color: black;
+/* 팝업 스타일 */
+.modal-bg {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 999;
 }
 
-.clearfix:after, .clearfix:before {
-	content: '';
-	display: table
+.qss-wrap,
+.hsotal-wrap,
+.modal-wrap,
+.whos-wrap {
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  background: #fff;
+  z-index: 1000;
+  border-radius: 25px;
+
 }
 
-.clearfix:after {
-	clear: both;
-	display: block
+.qs-wrap,
+.sotal-wrap,
+.login-wrap,
+.number-wrap {
+  width: 100%;
+  margin: auto;
+  max-width: 525px;
+  min-height: 670px;
+  position: relative;
+  background: url(/imges/introbg.jpg) no-repeat;
+  background-position: 50% 17%;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+  border-radius: 25px;
 }
 
-a {
-	color: inherit;
-	text-decoration: none
+/* 배경 투명화 및 이미지정렬 */
+.qs-html,
+.sotal-html,
+.login-html,
+.whos-html {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 90px 70px 50px 70px;
+  background: rgba(31, 37, 74, .9);
+  border-radius: 20px;
 }
 
-.login-wrap {
-	width: 100%;
-	max-width: 525px;
-	min-height: 670px;
-	position: relative;
-	justify-content : center;
-	margin: auto;
-	display: flex;
-	top:5%;
-	/*background:
-		no-repeat center;*/
-	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0
-		rgba(0, 0, 0, .19);
+/* 화면전환 애니메이션 */
+.login-html .sign-in-htm,
+.login-html .sign-up-htm,
+.whos-html .search-in-htm,
+.whos-html .search-up-htm {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: all .4s linear;
 }
 
-.login-html {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	padding: 90px 70px 50px 70px;
-	background: rgba(40, 57, 101, .9);
+/* 체크박스 지우기 */
+.qs-html .qs-in,
+.sotal-html .sign-in,
+.login-html .sign-in,
+.login-html .sign-up,
+.whos-html .search-in,
+.whos-html .search-up
+{
+  display: none;
 }
 
-.login-html .sign-in-htm, .login-html .sign-up-htm {
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	position: absolute;
-	transform: rotateY(180deg);
-	backface-visibility: hidden;
-	transition: all .4s linear;
-}
-
-.login-html .sign-in, .login-html .sign-up, .login-form .group .check {
-	display: none;
-}
-
-.login-html .tab, .login-form .group .label, .login-form .group .button
-	{
-	text-transform: uppercase;
-}
-
-.login-html .tab {
-	font-size: 22px;
-	margin-right: 15px;
-	padding-bottom: 5px;
-	margin: 0 15px 10px 0;
-	display: inline-block;
-	border-bottom: 2px solid transparent;
-}
-
-.login-html .sign-in:checked+.tab, .login-html .sign-up:checked+.tab {
-	color: #fff;
-	border-color: #1161ee;
-}
-
-.login-form {
-	min-height: 345px;
-	position: relative;
-	perspective: 1000px;
-	transform-style: preserve-3d;
-}
-
-.login-form .group {
-	margin-bottom: 15px;
-}
-
-.login-form .group .label, .login-form .group .input, .login-form .group .button
-	{
-	width: 100%;
-	color: #fff;
-	display: block;
-}
-
-.login-form .group .input, .login-form .group .button {
-	border: none;
-	padding: 15px 20px;
-	border-radius: 25px;
-	background: rgba(255, 255, 255, .1);
-}
-
-.login-form .group input[data-type="password"] {
-	-webkit-text-security: circle;
-}
-
-.login-form .group .label {
-	color: #aaa;
-	font-size: 12px;
-}
-
+/* 까먹음 */
+.qs-html .tab
+.sotal-html .tab,
+.whos-html .tab,
+.search-form .group .label,
+.search-form .group .button,
+.login-html .tab,
+.login-form .group .label,
 .login-form .group .button {
-	background: #1161ee;
+  text-transform: uppercase;
 }
 
-.login-form .group .check:checked+label {
-	color: #fff;
+/* 메뉴 클릭시 효과 및 배치 */
+.qs-html .tab
+.sotal-html .tab,
+.whos-html .tab,
+.login-html .tab {
+  font-size: 22px;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  margin: 0 15px 10px 0;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
 }
 
-.login-form .group .check:checked+label {
-	background: #1161ee;
+/* 메뉴 클릭시 효과 */
+.qs-html .qs-in:checked+.tab,
+.sotal-html .sign-in:checked+.tab,
+.whos-html .search-in:checked+.tab,
+.whos-html .search-up:checked+.tab,
+.login-html .sign-in:checked+.tab,
+.login-html .sign-up:checked+.tab {
+  color: #fff;
+  border-color: #1161ee;
 }
 
-.login-form .group .check:checked+label :before {
-	transform: scale(1) rotate(45deg);
+/* 로그인폼 속성 */
+.qs-form,
+.sotal-form,
+.search-form,
+.login-form {
+  min-height: 345px;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
-.login-form .group .check:checked+label :after {
-	transform: scale(1) rotate(-45deg);
+
+/* 로그인폼 요소 배치 */
+.qs-in-htm .group,
+.search-in-htm .group {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm
-	{
-	transform: rotate(0);
+.search-up-htm {
+  margin-top: 30px;
 }
 
+.qs-form .group,
+.login-form .group {
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+/* 번호검색창+검색버튼+텍스트 에어리어 */
+.qs-in-htm .group .input{
+  float: left;
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  display: block;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .1);
+  border: none;
+  margin-bottom: 50px;
+}
+.search-in-htm .group .input {
+  float: left;
+  width: 70%;
+  height: 50px;
+  color: #fff;
+  display: block;
+}
+
+.search-in-htm .group .button {
+  width: 30%;
+  color: #fff;
+  height: 50px;
+  display: block;
+}
+
+.qs-in-htm .group textarea,
+.search-in-htm .group textarea {
+  width: 100%;
+  color: #fff;
+  display: block;
+}
+
+/* 텍스트에어리어 크기 및 색상 */
+.qs-in-htm .group textarea,
+.search-in-htm .group textarea {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .1);
+  height: 300px;
+}
+
+.qs-form .button,
+.sotal-form .group .input,
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button {
+  width: 100%;
+  color: #fff;
+  display: block;
+}
+
+/* 검색창 배경 및 테두리 둥글 및 크기 */
+.qs-form .button,
+.sotal-form .group .input,
+.sotal-form .group .button,
+.search-in-htm .group .input,
+.login-form .group .input,
+.login-form .group .button {
+  border: none;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, .1);
+}
+
+
+/* 로그인창 글씨 */
+.sotal-form .group .label,
+.login-form .group .label {
+  color: #aaa;
+  font-size: 12px;
+}
+/* 버튼 색상 */
+.qs-form .button,
+.sotal-form .group .button,
+.search-form .group .button,
+.login-form .group .button {
+  border-color: rgb(59, 59, 252);
+  color: #fff;
+  box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
+  transition: all 150ms ease-in-out;
+  margin-top: 10%;
+}
+
+#su {
+  float: left;
+  width: 40%;
+  color: #fff;
+  display: block;
+}
+
+#tal {
+  float:right;
+  width: 40%;
+  color: #fff;
+  display: block;
+}
+
+.sotal-up-htm .group {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* 버튼 눌렀을시 색상 변경*/
+.qs-form .button:hover,
+.sotal-form .group .button:hover,
+.search-form .group .button:hover,
+.login-form .group .button:hover {
+  box-shadow: 0 0 10px 0 rgb(59, 59, 252) inset, 0 0 10px 4px rgb(59, 59, 252);
+}
+
+
+
+/* 화면 전환 */
+.whos-html .search-in:checked+.tab+.search-up+.tab+.search-form .search-in-htm,
+.login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
+  transform: rotate(0);
+}
+
+.whos-html .search-up:checked+.tab+.search-form .search-up-htm,
 .login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
-	transform: rotate(0);
+  transform: rotate(0);
 }
 
+/* 아래 줄 */
 .hr {
-	height: 2px;
-	margin: 60px 0 50px 0;
-	background: rgba(255, 255, 255, .2);
+  height: 2px;
+  margin: 60px 0 50px 0;
+  background: rgba(255, 255, 255, .2);
+}
+
+/* 플레이스홀더 컬러 */
+textarea::placeholder,
+input::placeholder {
+  color: #ccc;
+  font-weight: bold;
+
+}
+textarea::placeholder,
+input::-webkit-input-placeholder {
+  color: #ccc;
+  font-weight: bold;
+}
+
+input:-ms-input-placeholder {
+  color: #ccc;
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------- */
+
+body {
+  margin: 0;
+  background: #fffefe;
+  font: 600 16px/18px 'Open Sans', sans-serif;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box
 }
