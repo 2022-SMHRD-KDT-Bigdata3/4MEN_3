@@ -28,14 +28,16 @@ public class Updateservice implements ICommand {
 		
 		memberDAO dao = new memberDAO();
 		
-		int res = dao.update(vo);
 		
 		String murl="";
 		
-		if(res > 0) {
+		if(pw.equals(pw_c)) {
+			int res = dao.update(vo);
 			session.setAttribute("info", vo);
+			request.setAttribute("update", "OK");
 			murl = "main.jsp";
 		} else {
+			request.setAttribute("update", "NO");
 			murl = "main.jsp#modal03";
 		}
 		

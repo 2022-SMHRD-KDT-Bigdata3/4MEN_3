@@ -11,10 +11,10 @@ import com.smhrd.pattern.ICommand;
 
 public class Logoutservice implements ICommand{
 
-	public String execute(HttpServletRequest reqeust, HttpServletResponse response)
+	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = reqeust.getSession();
+		HttpSession session = request.getSession();
 		
 		session.removeAttribute("info");
 		

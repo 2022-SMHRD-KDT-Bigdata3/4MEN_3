@@ -11,12 +11,14 @@ import com.smhrd.model.memberDAO;
 import com.smhrd.model.memberVO;
 import com.smhrd.pattern.ICommand;
 
+import oracle.security.crypto.core.math.Prime;
+
 public class Idcheckservice implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-String id = request.getParameter("id");
+		String id = request.getParameter("id");
 		
 		memberDAO dao = new memberDAO();
 		memberVO check = dao.idcheck(id);

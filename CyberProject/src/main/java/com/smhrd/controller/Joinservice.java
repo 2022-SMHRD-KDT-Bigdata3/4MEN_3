@@ -24,14 +24,16 @@ public class Joinservice implements ICommand{
 		System.out.println(vo.toString());
 
 		memberDAO dao = new memberDAO();
-		int res = dao.join(vo);
 		
 
-		if (res > 0 && pw != pw1) {
+		if (pw.equals(pw1)) {
 			System.out.println("회원가입 성공");
+			int res = dao.join(vo);
+			request.setAttribute("join", "OK");
 
 		} else {
 			System.out.println("회원가입 실패");
+			request.setAttribute("join", "NO");
 		}
 		return "main.jsp";
 	}

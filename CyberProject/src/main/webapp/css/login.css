@@ -12,6 +12,30 @@
   z-index: 999;
 }
 
+.ggs-wrap{
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 1140px;
+  background: #fff;
+  z-index: 1000;
+  border-radius: 25px;
+}
+
+
+.gs-wrap{
+  margin: auto;
+  max-width: 1140px;
+  min-height: 670px;
+  position: relative;
+  background: url("../imges/introbg.jpg") no-repeat;
+  background-position: 50% 17%;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+  border-radius: 25px;
+}
+
 .qss-wrap,
 .hsotal-wrap,
 .modal-wrap,
@@ -37,13 +61,14 @@
   max-width: 525px;
   min-height: 670px;
   position: relative;
-  background: url(/imges/introbg.jpg) no-repeat;
+  background: url("../imges/introbg.jpg") no-repeat;
   background-position: 50% 17%;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .1);
   border-radius: 25px;
 }
 
 /* 배경 투명화 및 이미지정렬 */
+.gs-html,
 .qs-html,
 .sotal-html,
 .login-html,
@@ -56,7 +81,41 @@
   border-radius: 20px;
 }
 
+#messagebtn,
+#memberbtn {
+  bottom: 10%;
+  position: relative;
+  float: right;
+  width: 20%;
+  color: #fff;
+  display: block;
+  border-color: rgb(59, 59, 252);
+  box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
+  transition: all 150ms ease-in-out;
+  height: 50px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .1);
+  border: none;
+}
+
+#messagebtn:hover,
+#memberbtn:hover{
+  box-shadow: 0 0 10px 0 rgb(59, 59, 252) inset, 0 0 10px 4px rgb(59, 59, 252);
+}
+
 /* 화면전환 애니메이션 */
+.gs-html .gs-in-htm,
+.gs-html .gs-up-htm {
+	top: 0;
+  	left: 0;
+  	right: 0;
+  	bottom: 0;
+  	position: absolute;
+  	transform: rotateY(180deg);
+  	backface-visibility: hidden;
+}
+
+
 .login-html .sign-in-htm,
 .login-html .sign-up-htm,
 .whos-html .search-in-htm,
@@ -72,6 +131,8 @@
 }
 
 /* 체크박스 지우기 */
+.gs-html .gs-up,
+.gs-html .gs-in,
 .qs-html .qs-in,
 .sotal-html .sign-in,
 .login-html .sign-in,
@@ -83,7 +144,8 @@
 }
 
 /* 까먹음 */
-.qs-html .tab
+.gs-html .tab,
+.qs-html .tab,
 .sotal-html .tab,
 .whos-html .tab,
 .search-form .group .label,
@@ -95,7 +157,8 @@
 }
 
 /* 메뉴 클릭시 효과 및 배치 */
-.qs-html .tab
+.gs-html .tab,
+.qs-html .tab,
 .sotal-html .tab,
 .whos-html .tab,
 .login-html .tab {
@@ -108,6 +171,8 @@
 }
 
 /* 메뉴 클릭시 효과 */
+.gs-html .gs-up:checked+.tab,
+.gs-html .gs-in:checked+.tab,
 .qs-html .qs-in:checked+.tab,
 .sotal-html .sign-in:checked+.tab,
 .whos-html .search-in:checked+.tab,
@@ -119,6 +184,7 @@
 }
 
 /* 로그인폼 속성 */
+.gs-form,
 .qs-form,
 .sotal-form,
 .search-form,
@@ -202,6 +268,7 @@
 }
 
 /* 검색창 배경 및 테두리 둥글 및 크기 */
+.qs-form .input,
 .qs-form .button,
 .sotal-form .group .input,
 .sotal-form .group .button,
@@ -233,7 +300,7 @@
 }
 
 #su {
-  float: left;
+  float: right;
   width: 40%;
   color: #fff;
   display: block;
@@ -262,11 +329,12 @@
 
 
 /* 화면 전환 */
+.gs-html .gs-in:checked+.tab+.gs-up+.tab+.gs-form .gs-in-htm,
 .whos-html .search-in:checked+.tab+.search-up+.tab+.search-form .search-in-htm,
 .login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
   transform: rotate(0);
 }
-
+.gs-html .gs-up:checked+.tab+.gs-form .gs-up-htm,
 .whos-html .search-up:checked+.tab+.search-form .search-up-htm,
 .login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
   transform: rotate(0);

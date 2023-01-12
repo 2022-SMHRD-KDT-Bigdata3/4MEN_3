@@ -14,13 +14,17 @@ import com.smhrd.controller.Loginservice;
 import com.smhrd.controller.Logoutservice;
 import com.smhrd.controller.Memberlistservice;
 import com.smhrd.controller.Memberremoveservice;
+import com.smhrd.controller.Messageinsert;
 import com.smhrd.controller.Updateservice;
+import com.smhrd.model.memberDAO;
+import com.smhrd.model.memberVO;
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-System.out.println("프론트 실행");
+		
+		System.out.println("프론트 실행");
 		
 		String reqUrl = request.getRequestURI();
 		String path = request.getContextPath();
@@ -60,15 +64,13 @@ System.out.println("프론트 실행");
 			Idcheckservice idcheckservice = new Idcheckservice();
 			String moveURL = idcheckservice.execute(request, response);
 
-		// 회원목록 보기(admin)
+		// 회원목록 보기(어드민)
 		} else if(url.equals("memberlist.do")) {
 		
 			Memberlistservice memberlistservice = new Memberlistservice();
 			String moveURL= memberlistservice.execute(request, response);
-			RequestDispatcher re = request.getRequestDispatcher(moveURL);
-			re.forward(request, response);
 		
-		// 회원정보 삭제(admin)
+		// 회원정보 삭제(어드민)
 		} else if(url.equals("memberremove.do")) {
 			
 			Memberremoveservice memberremoveservice = new Memberremoveservice();
@@ -84,7 +86,19 @@ System.out.println("프론트 실행");
 			RequestDispatcher re = request.getRequestDispatcher(moveURL);
 			re.forward(request, response);
 			
-		}
+		// 건의하기(유저)
+		} else if(url.equals("messageinsert.do")) {
+			
+			Messageinsert messageinsert = new Messageinsert();
+			String moveURL = messageinsert.execute(request, response);
+			RequestDispatcher re = request.getRequestDispatcher(moveURL);
+			re.forward(request, response);
 		
+		// 건의함(어드민)
+		} else if(url.equals("messageselect.do")) {
+			
+			
+		}
+
 	}
 }
