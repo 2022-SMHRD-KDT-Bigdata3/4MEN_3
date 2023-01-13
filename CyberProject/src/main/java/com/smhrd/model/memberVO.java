@@ -2,39 +2,35 @@ package com.smhrd.model;
 
 public class memberVO {
 	
-	private String U_ID;
-	private String PW;
+	private String u_id;
+	private String pw;
 	
-	public memberVO(String id, String pw) {
-		super();
-		this.U_ID = id;
-		this.PW = pw;
-	}
-	
-
 	@Override
 	public String toString() {
-		return "memberVO [id=" + U_ID + ", pw=" + PW + "]";
+		return "memberVO [u_id=" + u_id + ", pw=" + pw + "]";
 	}
 
-	public memberVO() {
-		super();
+	public memberVO(String u_id, String pw) {
+		this.u_id = u_id;
+		this.pw = pw;
 	}
-
-	public String getId() {
-		return U_ID;
-	}
-
-	public void setId(String id) {
-		this.U_ID = id;
-	}
-
-	public String getPw() {
-		return PW;
-	}
-
-	public void setPw(String pw) {
-		this.PW = pw;
-	}	
 	
+	public memberVO() {
+	}
+	
+	public String getU_id() {
+		return u_id;
+	}
+	
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
+	
+	public String getPw() {
+		return pw;
+	}
+	
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 }
