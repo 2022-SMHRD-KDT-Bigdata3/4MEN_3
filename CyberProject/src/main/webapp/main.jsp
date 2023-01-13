@@ -33,6 +33,55 @@
 <!-- 알림창쓰기위한 js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- google chart -->
+<script src='https://www.gstatic.com/charts/testing-loader.js'></script>
+<!-- chart.js -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<!-- main_status js 메인 현황 -->
+<script src="js/main_status.js"></script>
+
+<!-- ISC_Region js 지역별 인터넷 사기범죄 현황 -->
+<script src="js/ISC_Region.js"></script>
+
+<!-- VP_Region js 지역별 보이스피싱 현황 -->
+<script src="js/VP_Region.js"></script>
+
+<!-- CyberCrime_Statistics js 사이버범죄 통계 -->
+<script src="js/CyberCrime_Statistics.js"></script>
+
+<!-- month_Cyber js 월별 사이버범죄 현황 -->
+<script src="js/Cyber_month.js"></script>
+
+<!-- month_Phishing js 월별 사이버범죄 현황 -->
+<script src="js/Phishing_month.js"></script>
+
+<!-- Phishing_Status js 보이스피싱 기관사칭/대출사기형 현황 -->
+<script src="js/Phishing_Status.js"></script>
+
+<!-- Phishing_sex js 보이스피싱 성별 현황 -->
+<script src="js/Phishing_sex.js"></script>
+
+<!-- Phishing_age js 보이스피싱 연령별 현황 -->
+<script src="js/Phishing_age.js"></script>
+
+<!-- Summary_Stroy js 요약 줄거리 -->
+<script src="js/Summary_Story.js"></script>
+
+<!-- Region_Stroy js 지역차트 줄거리 -->
+<script src="js/Region_Story.js"></script>
+
+<!-- month_Story js 월별차트 줄거리 -->
+<script src="js/month_Story.js"></script>
+
+<!-- CyberCrime_Statistics_Hbar js 가로 막대 차트 -->
+<script src="js/CyberCrime_Statistics_Hbar.js"></script>
+
+<!-- VP_story js 보이스피싱 분류 줄거리 차트 -->
+<script src="js/VP_Story.js"></script>
+
 </head>
 
 <body>
@@ -92,23 +141,26 @@
 			<ul id="list_data">
 				<li>
 					<div>
-						<p id="list_text1">2021</p>
+						<!-- 사이버범죄 발생건수(id값 바꿈, CSS id 값 바꿈) -->
+						<p id="CC_year"></p>
 						<p id="list_text2">사이버범죄 발생건수</p>
-						<p id="list_text3" class="data1"></p>
+						<p id="CC_cnt"></p>
 					</div>
 				</li>
 				<li>
 					<div>
-						<p id="list_text1">2022</p>
+						<!-- 보이스피싱 발생건수(id값 바꿈, CSS id 값 바꿈) -->
+						<p id="VP_year"></p>
 						<p id="list_text2">보이스피싱 발생건수</p>
-						<p id="list_text3" class="data2"></p>
+						<p id="VP_cnt"></p>
 					</div>
 				</li>
 				<li>
 					<div>
-						<p id="list_text1">2020</p>
+						<!-- 인터넷 범죄 피해금액(id값 바꿈, CSS id 값 바꿈) -->
+						<p id="IDT_Status_year"></p>
 						<p id="list_text2">인터넷 직거래 사기 총 피해액</p>
-						<p id="list_text3" class="data3"></p>
+						<p id="IDT_Status_won"></p>
 					</div>
 				</li>
 			</ul>
@@ -163,7 +215,7 @@
 
 
 		<!-- 뉴스 데이터 페이지 START -->
-		<div id="main_pg1" class="title_size">
+		<div id="main_pg1" class="title_size1">
 			<div id="pg1">
 				<div id="pg1-title">
 					<h2>뉴스</h2>
@@ -186,44 +238,330 @@
 		<!-- 뉴스 데이터 페이지 END -->
 
 		<!-- 사이버범죄 현황 데이터 페이지 START -->
-		<div id="main_pg2" class="title_size">
-			<div id="pg1">
-				<div id="pg1-title">
-					<h2>사이버범죄 현황</h2>
-					<h3>줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리</h3>
+		<div id="main_pg2" class="title_size2">
+			<div id="pg1-title">
+				<h2>사이버범죄 현황</h2>
+			</div>
+
+			<aside class=topic>
+				<div class=topic_status>
+					<div class=ge_year>
+						<span id="year_CyberMonth"></span>
+					</div>
+					<div class=status1>
+						<h4>총 발생건수</h4>
+						<span id="CyberMonth_geCnt"></span>
+					</div>
+					<div class=status2>
+						<h4>검거율</h4>
+						<span id="CyberMonth_pct"></span>
+					</div>
+				</div>
+				<p>
+					사이버범죄는 2018년 
+					<span id="ge_cnt_2018"></span>
+					에서 2019년 
+					<span id="ge_cnt_2019"></span>
+					 으로 증가하고, 2020년에는 다시 
+					<span id="ge_cnt_2020"></span>
+					 으로 증가하여 2018년 대비 
+					<strong><span id="ge_cnt_1820"></span></strong>
+					의 높은 증가세를 보였다. 반면, 사이버범죄에 대한 검거율은 2018년 
+					<span id="ar_pct_2018"></span>
+					에서 2019년 
+					<span id="ar_pct_2019"></span>
+					, 2020년에 
+					<span id="ar_pct_2020"></span>
+					로 다소 낮아지는 양상을 보여주었다.
+				</p>
+				<p>
+					2020년도 사이버범죄는 총 
+					<span id="CyberMonth_geCnt_2020"></span>
+					 발생하였고 2016년도 기준으로 증감율은 
+					<strong><span id="CyberMonth_gePct_1620"></span></strong>
+					로 나날이 늘어가고 있는 추세이다.
+				</p>
+				<sub class="source">Dataset:<a href="https://www.data.go.kr/"
+					target="_blank">공공데이터 포털</a></sub>
+				<select class="select3" id="month_Cyber_year"
+					onchange="get_Cyber_month(); Cyber_month_data();">
+					<option>2014년</option>
+					<option>2015년</option>
+					<option>2016년</option>
+					<option>2017년</option>
+					<option>2018년</option>
+					<option>2019년</option>
+					<option selected>2020년</option>
+				</select>
+				<section>
+					<article class="centeringContainer">
+						<div class="chart">
+							<div class="chart-item3">
+								<canvas id="month_Cyber_Chart"></canvas>
+							</div>
+						</div>
+					</article>
+				</section>
+			</aside>
+			<div class="topic2">
+				<select class="select1" id="year_ISC"
+					onchange="get_ISC_Region(); Region_data();">
+					<option>2014년</option>
+					<option>2015년</option>
+					<option>2016년</option>
+					<option>2017년</option>
+					<option>2018년</option>
+					<option selected>2019년</option>
+				</select> <select class="select2" id="category_ISC"
+					onchange="get_ISC_Region(); Region_data();">
+					<option selected>인구 천명당 발생비</option>
+					<option>인구 천명당 검거비</option>
+				</select>
+				<div class="chart">
+					<div class="chart-item1" id="ISC_table_div"></div>
+				</div>
+			</div>
+			<div class="topic3">
+				<div class="chart">
+					<div class="chart-item2" id="ISC_regions_div"></div>
 				</div>
 			</div>
 		</div>
 		<!-- 사이버범죄 현황 데이터 페이지 END -->
 
 		<!-- 사이버범죄 분류 데이터 페이지 START -->
-		<div id="main_pg3" class="title_size">
-			<div id="pg1">
-				<div id="pg1-title">
-					<h2>사이버범죄 분류</h2>
-					<h3>줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리</h3>
+		<div id="main_pg3" class="title_size3">
+			<div id="pg1-title">
+				<h2>사이버범죄 분류</h2>
+			</div>
+			<aside class=topic_Cyber1>
+				<select class="select4" id="year_CC" onchange="get_CC_Statistics(); get_CC_Statistics_Hbar();">
+					<option>2014년</option>
+					<option>2015년</option>
+					<option>2016년</option>
+					<option>2017년</option>
+					<option>2018년</option>
+					<option>2019년</option>
+					<option selected>2020년</option>
+				</select> <select class="select5" id="category_CC"
+					onchange="get_CC_Statistics(); get_CC_Statistics_Hbar();">
+					<option selected>발생건수</option>
+					<option>검거건수</option>
+				</select> <select class="select6" id="crime_type"
+					onchange="get_CC_Statistics(); get_CC_Statistics_Hbar();">
+					<option selected>해킹 및 정보통신망</option>
+					<option>사이버 사기 및 금융범죄</option>
+					<option>사이버 음란물 및 도박</option>
+				</select>
+				<div class=topic_status>
+					<div class=Cyber_ge_year>
+						<span id="year_Cyber_Statistics"></span>
+					</div>
+					<div class=Cyber_Statistics_status1>
+						<h4>총 발생건수</h4>
+						<span id="Cyber_Statistics_geCnt"></span>
+					</div>
+					<div class=Cyber_Statistics_status2>
+						<h4>검거율</h4>
+						<span id="Cyber_Statistics_pct"></span>
+					</div>
+					<div class=Cyber_Statistics_status3>
+						<h4>가장 높은 발생 유형</h4>
+						<span id="Cyber_Statistics_top"></span>
+					</div>
+					
 				</div>
+				<p>
+				사이버사기의 가장 대표적인 수법은 중고거래 카페·앱에서 개인 간 거래를 빙자하여 이뤄지는 ‘직거래 사기’이다.
+				2016년
+				<span id="Direc_Scam_2016"></span>,
+				2017년
+				<span id="Direc_Scam_2017"></span>,
+				2018년
+				<span id="Direc_Scam_2018"></span>,
+				2019년
+				<span id="Direc_Scam_2019"></span>,
+				2020년
+				<span id="Direc_Scam_2020"></span>
+				으로 5년 사이 
+				<strong><span id="Direc_Scam_pct"></span></strong>
+				의 증가율을 보이며 전반적으로 상승하고 있다.
+				일상 속에서 흔히 발생하고 있기에 점점 증가되는 추세에서 주의할 필요가 있다.
+				</p>
+				<p>
+				누구나 피해자가 될 우려가 있기에 예방방안이 중요하다. 이에 대해 온라인으로 간편하게 신고 가능한
+				<a href="https://ecrm.police.go.kr/minwon/main" style="font-size:25px;">ECRM</a>
+				(사이버 범죄 신고시스템)이라는 온라인 신고 시스템이 있으며, 다양한 신고접수부터 사이버범죄 관련 상담이 가능하다.
+				</p>
+				<div class="topic_Cyber2">
+				<section>
+					<article class="centeringContainer">
+						<div class="chart">
+							<div class="chart-item3">
+								<canvas id="ccsChart_hbar"></canvas>
+							</div>
+						</div>
+					</article>
+					<sub class="sub-source">Dataset:<a href="https://www.data.go.kr/" target="_blank">공공데이터 포털</a></sub>
+				</section>
+			</div>
+			</aside>
+			
+			<div class="topic_Cyber3">
+				<section>
+					<article class="centeringContainer">
+						<div class="chart">
+							<div class="chart-item3">
+								<canvas id="ccsChart"></canvas>
+							</div>
+						</div>
+					</article>
+					<sub class="sub-source">Dataset:<a href="https://www.data.go.kr/" target="_blank">공공데이터 포털</a></sub>
+				</section>
 			</div>
 		</div>
 		<!-- 사이버범죄 분류 데이터 페이지 END-->
 
 		<!-- 전화금융사기 현황 데이터 페이지 START -->
-		<div id="main_pg4" class="title_size">
-			<div id="pg1">
-				<div id="pg1-title">
-					<h2>전화금융사기 현황</h2>
-					<h3>줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리</h3>
+		<div id="main_pg4" class="title_size2">
+			<div id="pg1-title">
+				<h2>전화금융사기 현황</h2>
+			</div>
+
+			<aside class=topic>
+				<div class=topic_status>
+					<div class=ge_year>
+						<span id="year_PhishingMonth"></span>
+					</div>
+					<div class=status3>
+						<h4>총 발생건수</h4>
+						<span id="PhishingMonth_geCnt"></span>
+					</div>
+				</div>
+				<p>
+					전화금융사기	<!-- hover 이벤트 → 설명 알림창 달기 -->
+					에서는 
+					<span id="year_VP_Region"></span> 
+					도 인구수 1,000명에 대비하여 지역별 발생비가 가장 높은 곳은 " 
+					<span id="VP_Region_Top"></span> 
+					" 이다. 총 발생건수는
+					<span id="VP_Region_Top_cnt"></span>
+					 , 총 인구수는 
+					<span id="VP_Region_Top_popul"></span>
+					 이며, 발생비((발생건수/인구수)*1000)로는 
+					<strong><span id="VP_Region_Top_pct"></span></strong>
+					로 가장 높다. 대표적인 전화금융사기의 사례로는 
+					가족과 지인 사칭,	<!-- hover 이벤트 → 사례에 대한 설명, 예방법 달기 -->
+					정부 및 금융기관 사칭,	<!-- hover 이벤트 → 사례에 대한 설명, 예방법 달기 -->
+					원격제어 앱 설치유도	<!-- hover 이벤트 → 사례에 대한 설명, 예방법 달기 -->
+					등이 있다.
+				</p>
+				<p>
+					월별 보이스피싱 현황에서 볼 수 있듯이 2021년도는 총 
+					<span id="Tff_cnt_2021"></span> 
+					으로, 2020년 발생건수 
+					<span id="Tff_cnt_2020"></span> 
+					수와 다소 큰 차이가 없어 완화되지 않음을 알 수 있다.
+				</p>
+				<sub class="source">Dataset:<a href="https://www.data.go.kr/"
+					target="_blank">공공데이터 포털</a></sub>
+				<select class="select3" id="month_Phishing_year"
+						onchange="get_Phishing_month(); Cyber_month_data();">
+					<option>2018년</option>
+					<option>2019년</option>
+					<option>2020년</option>
+					<option selected>2021년</option>
+				</select>
+				<section>
+					<article class="centeringContainer">
+						<div class="chart">
+							<div class="chart-item3">
+								<canvas id="month_Phishing_Chart"></canvas>
+							</div>
+						</div>
+					</article>
+				</section>
+			</aside>
+			<div class="topic2">
+				<select class="select1" id="year_VP"
+					onchange="get_VP_Region(); Region_data();">
+					<option>2016년</option>
+					<option>2017년</option>
+					<option>2018년</option>
+					<option>2019년</option>
+					<option selected>2020년</option>
+				</select>
+				<div class="chart">
+					<div class="chart-item1" id="VP_table_div"></div>
+				</div>
+			</div>
+			<div class="topic3">
+				<div class="chart">
+					<div class="chart-item2" id="VP_regions_div"></div>
 				</div>
 			</div>
 		</div>
 		<!-- 전화금융사기 현황 데이터 페이지 END -->
 
 		<!-- 보이스피싱 유형 데이터 페이지 START -->
-		<div id="main_pg5" class="title_size">
-			<div id="pg1">
-				<div id="pg1-title">
-					<h2>보이스피싱 유형</h2>
-					<h3>줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리</h3>
+		<div id="main_pg5" class="title_size5">
+			<div id="pg1-title">
+				<h2>보이스피싱 유형</h2>
+			</div>
+			<aside class=topic_VP1>
+					<select class="select8" id="category_Phishing"
+						onchange="get_Phishing_Status(); VP_data();">
+						<option selected>대출사기형</option>
+						<option>기관사칭형</option>
+					</select>
+					<div class="chart">
+						<div class="chart-item6">
+							<canvas id="phishing_Status_Chart"></canvas>
+							<sub class="sub-source">Dataset:<a href="https://www.data.go.kr/" target="_blank">공공데이터 포털</a></sub>
+						</div>
+					</div>
+			</aside>
+			<div class="topic_VP2">
+				<div class="VP_story">
+					<div class=VP_status>
+						<div class=VP_status_kind>
+							<span id="VP_kind"></span>
+						</div>
+						<div class=VP_status_pct>
+							<h4>5년간 증감율</h4>
+							<span id="VP_kind_pct"></span>
+						</div>
+						<p class="VP_story_p" id="VP_story">
+						</p>
+					</div>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/mhAIHwK_db0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				</div>
+				<div class="topic_VP3">
+					<div class="chart">
+						<div class="chart-item4">
+							<select class="select9" id="phishing_Sex_year"
+								onchange="get_Phishing_Sex()">
+							<option>2016년</option>
+							<option>2017년</option>
+							<option>2018년</option>
+							<option>2019년</option>
+							<option selected>2020년</option>
+							</select>
+							<canvas id="phishing_Sex_chart"></canvas>
+						</div>
+						
+						<div class="chart-item5">
+						<select class="select7" id="phishing_age_year"
+							onchange="get_Phishing_Age()">
+							<option>2016년</option>
+							<option>2017년</option>
+							<option>2018년</option>
+							<option>2019년</option>
+							<option selected>2020년</option>
+						</select>
+							<canvas id="phishing_age_chart"></canvas>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -766,48 +1104,7 @@ function checkValue(){
 	</script>
 
 	<!-- 전체 데이터 값 카운트 시작 -->
-	<script>
-		// 임의 숫자지정
-		var d1 = 296842;
-		var d2 = 256897;
-		var d3 = 124434;
-
-		$({
-			// 0부터 시작
-			val : 0,
-			val1 : 0,
-			val2 : 0
-		}).animate({
-			// 증가할 데이터 지정
-			val : d1,
-			val1 : d2,
-			val2 : d3
-		}, {
-			// 어느정도의 속도로 증가할지 지정
-			duration : 2000,
-			step : function() {
-				var num = numberWithCommas(Math.floor(this.val));
-				$(".data1").text(num);
-				var num1 = numberWithCommas(Math.floor(this.val1));
-				$(".data2").text(num1);
-				var num2 = numberWithCommas(Math.floor(this.val2));
-				$(".data3").text(num2);
-			},
-			complete : function() {
-				var num = numberWithCommas(Math.floor(this.val));
-				$(".data1").text(num);
-				var num1 = numberWithCommas(Math.floor(this.val1));
-				$(".data2").text(num1)
-				var num2 = numberWithCommas(Math.floor(this.val2));
-				$(".data3").text(num2)
-			}
-		});
-
-		//3자리마다 , 찍기
-		function numberWithCommas(x) {
-			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-	</script>
+	<!-- main_status.js 적용 -->
 	<!-- 전체 데이터 값 카운트 끝 -->
 
 	<!-- 페이지 부드럽게 넘기기 jquery 코드 -->
@@ -998,10 +1295,7 @@ function checkValue(){
 	
 	<!-- f5(새로고침) 클릭 시 메인페이지 이동 -->
 	<script type="text/javascript">
-		document.onkeydown = fkey;
-		document.onkeypress = fkey;
-		document.onkeyup = fkey;
-		 
+		document.onkeydown = fkey;		 
 		var wasPressed = false;
 		 
 		function fkey(e){
@@ -1063,7 +1357,6 @@ function checkValue(){
 				type : "get", // 데이터 전송 방식	
 				dataType : "JSON",
 				success : function(data){
-					console.log(data);
 					
 					// 뉴스 테이블 출력 하는 js 코드
 					let appendNumber = 600;
@@ -1231,5 +1524,7 @@ function checkValue(){
 
 <!-- swiper js 뉴스페이지 -->
 <script src="js/swiper-bundle.min.js"></script>
+<!-- CyberCrime_Statistics js 사이버범죄 통계 -->
+<script src="js/CyberCrime_Statistics.js"></script>
 
 </html>

@@ -147,7 +147,57 @@ body{
 #list_data > li:not(:last-child) > div{ /* 데이터 마지막 보더 빼기 */
     border-right: 1px solid white ;
 }
-#list_text1{
+
+/*main_status CSS id 교체 함*/
+#CC_year {
+	font-size: 15px;
+	font-weight: 100;
+	color: white;
+}
+
+#VP_year {
+	font-size: 15px;
+	font-weight: 100;
+	color: white;
+}
+
+#IDT_Status_year {
+	font-size: 15px;
+	font-weight: 100;
+	color: white;
+}
+
+#list_text1 {
+	font-size: 15px;
+	font-weight: 100;
+	color: white;
+}
+
+#list_text2 {
+	font-size: 15px;
+	font-weight: 100;
+	color: white;
+	margin-bottom: 5%;
+}
+
+#CC_cnt {
+	font-size: 30px;
+	font-weight: lighter;
+	color: white;
+}
+
+#VP_cnt {
+	font-size: 30px;
+	font-weight: lighter;
+	color: white;
+}
+
+#IDT_Status_won {
+	font-size: 30px;
+	font-weight: lighter;
+	color: white;
+}
+/* #list_text1{
     font-size: 15px;
     font-weight: 100;
     color: white;
@@ -162,7 +212,7 @@ body{
     font-weight: lighter;
     color: white;
     float: none;
-}
+} */
 
 /* 아이콘 태그 정보 시작 */
 #icon_tag{
@@ -209,43 +259,79 @@ body{
     transform: scale(1.1);
 }
 
-
-
 /* Main Page */
-.title_size{
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
+/* 차트 크기에 맞게 사이즈 변경 */
+.title_size1 {
+	width: 100%;
+	height: 65vh;
+	background-size: cover;
+	background-color: rgb(236, 239, 245);
+	padding-bottom: 2%;
 }
-/* 페이지 목록 정리 */
-.title_size:nth-last-of-type(5) { 
-    background-color: lightgray;
+
+.title_size2 {
+	width: 100%;
+	height: 75vh;
+	background-size: cover;
+	background-color: rgb(255, 255, 245);
+	padding-bottom: 2%;
 }
-.title_size:nth-last-of-type(4) { 
-    background-color: lightslategray;
+
+.title_size3 {
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+	background-color: rgb(236, 239, 245);
+	padding-bottom: 2%;
 }
-.title_size:nth-last-of-type(3) { 
-    background-color: lightgray;
+
+.title_size5 {
+	width: 100%;
+	height: 80vh;
+	background-size: cover;
+	background-color: rgb(236, 239, 245);
+	padding-bottom: 2%;
 }
-.title_size:nth-last-of-type(2) { 
-    background-color: lightslategray;
+
+.title_size>div { /* 차트 크기에 맞게 사이즈 변경 후 div 영역 일정하게 공백 지정 */
+	padding-bottom: 2%;
 }
-.title_size:nth-last-of-type(1) { 
-    background-color: lightgray;
+/* 
+페이지 목록 정리 
+.title_size:nth-last-of-type(5) {
+	background-color: rgb(236, 239, 245);
 }
+
+.title_size:nth-last-of-type(4) {
+	background-color: rgb(255, 255, 245);
+}
+
+.title_size:nth-last-of-type(3) {
+	background-color: rgb(236, 239, 245);
+}
+
+.title_size:nth-last-of-type(2) {
+	background-color: rgb(255, 255, 245);
+}
+
+.title_size:nth-last-of-type(1) {
+	background-color: rgb(236, 239, 245);
+} 
+*/
+
 /* page 제목*/
-#pg1-title > h2 {
-    padding-top: 40px;
-    margin-left: 200px;
-    font-size: 50px;
+#pg1-title>h2 {
+	padding-top: 40px;
+	margin-left: 180px;
+	font-size: 50px;
 }
 /* page 내용*/
-#pg1-title > h3 {
-    width: 1000px;
-    height: 50px;
-    margin-top: 30px;
-    margin-left: 200px;
-    font-size: 20px;
+#pg1-title>h3 {
+	width: 80%;
+	height: 50px;
+	margin-top: 30px;
+	margin-left: 200px;
+	font-size: 20px;
 }
 
 /* 뉴스 슬라이드 정보 구현 */
@@ -306,7 +392,413 @@ body{
 	align-content: center;
 }
 
+/*여기서부터 봉봉*/
+/* 타이틀 margin-bottom */
+#pg1-title {
+	margin-bottom: 50px;
+}
 
+/* topic class 좌우로 */
+.topic {
+	float: left;
+	width: 30%;
+	height: 80%;
+	padding-left: 4%;
+	padding-top: 2%;
+}
+
+.topic2 {
+	float: left;
+	width: 20%;
+	height: 80%;
+	background-size: cover;
+	padding-left: 2%;
+}
+
+.topic3 {
+	float: left;
+	width: 50%;
+	height: 80%;
+	background-size: cover;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+/* topic_Cyber 크기 조절 */
+.topic_Cyber1 {
+	float: left;
+	width: 55%;
+	height: 44%;
+	padding-left: 4%;
+}
+
+.topic_Cyber2 {
+	width: 100%;
+	height: 100%;
+}
+
+.topic_Cyber3 {
+	float: left;
+	width: 44%;
+	height: 44%;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+/* topic_VP 크기 조절 */
+.topic_VP1 {
+	float: left;
+	width: 45%;
+	height: 80%;
+}
+
+.topic_VP2 {
+	float: left;
+	width: 54%;
+	height: 80%;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.topic_VP3 {
+	width: 100%;
+	height: 55%;
+}
+
+/* topic 안에 글자 크기와 영역 크기 조정 */
+.ge_year {
+	margin-bottom: 2%;
+}
+
+.ge_year>span {
+	font-size: 30px;
+}
+
+.Cyber_ge_year {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.Cyber_ge_year>span {
+	font-size: 30px;
+}
+
+.topic_status {
+	width: 100%;
+	height: 20%;
+	margin-bottom: 2%;
+	padding-left: 4%;
+}
+
+/* status class 좌우로 */
+.status1 {
+	float: left;
+	width: 50%;
+	height: 80%;
+}
+
+.status2 {
+	float: left;
+	width: 50%;
+	height: 80%;
+	padding-left: 15%;
+}
+
+.status3 {
+	float: left;
+	width: 50%;
+	height: 30%;
+}
+
+.Cyber_Statistics_status1 {
+	float: left;
+	width: 20%;
+	height: 80%;
+	margin-bottom: 2%;
+}
+
+.Cyber_Statistics_status2 {
+	float: left;
+	width: 20%;
+	height: 80%;
+	padding-left: 5%;
+	margin-bottom: 2%;
+}
+
+.Cyber_Statistics_status3 {
+	float: left;
+	width: 60%;
+	height: 80%;
+	margin-bottom: 2%;
+}
+
+/* status 글자크기 조정 */
+.status1>h4 {
+	font-size: 15px;
+	margin-bottom: 7%;
+	margin-top: 3%;
+}
+
+.status2>h4 {
+	font-size: 15px;
+	margin-bottom: 10%;
+	margin-top: 3%;
+}
+
+.status3>h4 {
+	font-size: 15px;
+	margin-bottom: 5%;
+}
+
+/* status 글자크기 조정 */
+.status1>span {
+	font-size: 40px;
+}
+
+.status2>span {
+	font-size: 40px;
+}
+
+.status3>span {
+	font-size: 40px;
+}
+/* status 글자크기 조정 */
+.Cyber_Statistics_status1>h4 {
+	font-size: 15px;
+	margin-bottom: 7%;
+}
+
+.Cyber_Statistics_status2>h4 {
+	font-size: 15px;
+	margin-bottom: 10%;
+}
+
+.Cyber_Statistics_status3>h4 {
+	font-size: 15px;
+	margin-bottom: 3%;
+}
+
+/* status 글자크기 조정 */
+.Cyber_Statistics_status1>span {
+	font-size: 35px;
+}
+
+.Cyber_Statistics_status2>span {
+	font-size: 35px;
+}
+
+.Cyber_Statistics_status3>span {
+	font-size: 35px;
+}
+
+/* select 버튼 CSS */
+.select1 {
+	width: 30%;
+	height: 6%;
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.select2 {
+	width: 60%;
+	height: 6%;
+	margin-top: 5px;
+	margin-left: 0px;
+	font-size: 20px;
+}
+
+.select3 {
+	float: right;
+	width: 20%;
+	height: 4%;
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 15px;
+	width: 20%;
+}
+
+.select4 {
+	float: right;
+	width: 8%;
+	height: 10%;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.select5 {
+	float: right;
+	width: 10%;
+	height: 10%;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.select6 {
+	float: right;
+	width: 21%;
+	height: 10%;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.select7 {
+	float: left;
+	width: 20%;
+	height: 12%;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.select8 {
+	float: right;
+	width: 21%;
+	height: 6%;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.select9 {
+	float: left;
+	width: 50%;
+	height: 8%;
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+/* geo chart(지역차트)와 table chart(테이블 차트)를 좌우로 띄우면서 크기 조절 */
+.chart:after {
+	width: 100%;
+	height: 100%;
+	clear: both;
+	display: block;
+	content: '';
+}
+
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	display: inline-block;
+}
+/* chart 영역 좌우로 나란히 */
+.chart_area {
+	float: left;
+}
+/* chart 테이블차트 */
+.chart .chart-item1 {
+	float: left;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	margin-right: 2%;
+	margin-top: 5%;
+}
+/* chart 지역 차트 */
+.chart .chart-item2 {
+	float: left;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.chart .chart-item.last {
+	float: right;
+	border-right: none;
+}
+/*사이버 범죄 통계 chart CSS*/
+.chart .chart-item3 {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-right: 1px solid #ddd;
+	margin-top: 2%;
+}
+/*보이스피싱 성별 chart CSS*/
+.chart .chart-item4 {
+	float: left;
+	width: 25%;
+	height: 25%;
+	text-align: center;
+	border-right: 1px solid #ddd;
+	margin-top: 2%;
+}
+/*보이스피싱 나이 chart CSS*/
+.chart .chart-item5 {
+	float: right;
+	width: 780px; /*고정크기로 안주면 select 이벤트 발생할 때마다 차트크기 변화댐...*/
+	height: 300px;
+	text-align: center;
+	border-right: 1px solid #ddd;
+	margin-top: 2%;
+	padding-left: 5%;
+}
+/*보이스피싱 유형별 chart CSS*/
+.chart .chart-item6 {
+	width: 800px; /*고정크기로 안주면 select 이벤트 발생할 때마다 차트크기 변화댐...*/
+	height: 600px;
+	text-align: center;
+	border-right: 1px solid #ddd;
+	margin-top: 2%;
+	margin-left: 10%;
+}
+/* iframe 옆으로 붙이기*/
+.VP_story {
+	width: 100%;
+	height: 50%;
+}
+
+.VP_status {
+	float: left;
+	width: 45%;
+	height: 40%;
+}
+
+iframe {
+	float: left;
+	margin-left: 2%
+}
+/* VP_유형 크기 조절 */
+.VP_status_kind {
+	float: left;
+	width: 49%;
+	height: 50%;
+	padding-top: 5%;
+}
+
+.VP_status_pct {
+	float: left;
+	width: 49%;
+	height: 50%;
+	padding-left: 2%;
+	padding-right: 2%;
+	margin-bottom: 10%;
+}
+/* status 글자크기 조정 */
+.VP_status_kind>h4 {
+	font-size: 15px;
+}
+
+.VP_status_kind>span {
+	font-size: 35px;
+}
+
+.VP_status_pct>h4 {
+	font-size: 15px;
+	margin-bottom: 10%;
+}
+
+.VP_status_pct>span {
+	font-size: 35px;
+}
+
+.VP_story_p {
+	line-height:2.5em;
+	width: 100%;
+	height: 100%;
+	border-right: 1px solid #ddd;
+	padding-right: 5%;
+}
+
+/* 합치고 나서 마무리 CSS 다듬기 */
 
 
 

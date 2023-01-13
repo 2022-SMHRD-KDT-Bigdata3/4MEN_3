@@ -1,4 +1,16 @@
-/* 팝업 스타일 */
+body {
+  margin: 0;
+  background: #fffefe;
+  font: 600 16px/18px 'Open Sans', sans-serif;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box
+}
+
+/* 팝업 배경 스타일 */
 .modal-bg {
   display: none;
   width: 100%;
@@ -11,7 +23,52 @@
   backdrop-filter: blur(2px);
   z-index: 999;
 }
+/* 팝업 배경 스타일 끝 */
 
+/* 모달창 래디오 체크박스 지우기 */
+.gs-html .gs-up,
+.gs-html .gs-in,
+.qs-html .qs-in,
+.sotal-html .sign-in,
+.login-html .sign-in,
+.login-html .sign-up,
+.whos-html .search-in,
+.whos-html .search-up
+{
+  display: none;
+}
+/* 모달창 래디오 체크박스 지우기 끝 */
+
+/* 인풋, 텍스트에어리어 플레이스홀더 컬러 */
+textarea::placeholder,
+input::placeholder {
+  color: #ccc;
+  font-weight: bold;
+
+}
+textarea::placeholder,
+input::-webkit-input-placeholder {
+  color: #ccc;
+  font-weight: bold;
+}
+
+input:-ms-input-placeholder {
+  color: #ccc;
+  font-weight: bold;
+}
+/* 인풋, 텍스트에어리어 플레이스홀더 컬러 끝 */
+
+/* 모달창 아래 줄 */
+.hr {
+  height: 2px;
+  margin: 60px 0 50px 0;
+  background: rgba(255, 255, 255, .2);
+}
+/* 모달창 아래 줄 끝*/
+
+/* --------------------------------------------
+
+/* 회원가입 보안강도 프로그레스바*/
 #meter {
     appearance: none;
     float: right;
@@ -31,14 +88,18 @@
 #meter[value]::-webkit-progress-value{
     transition: width 0.8s;
 }
+/* 회원가입 보안강도 프로그레스바 끝*/
 
+/* 회원가입 보안문구*/
 .textbox{
-	color: #fff;
-	font-size : 14px;
-	float: right;
-	margin-top: 5px;
+   color: #fff;
+   font-size : 14px;
+   float: right;
+   margin-top: 5px;
 }
+/* 회원가입 보안문구 끝*/
 
+/*건의함 로그인창 위치, 레이아웃*/
 .ggs-wrap{
   display: none;
   position: fixed;
@@ -62,7 +123,9 @@
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
   border-radius: 25px;
 }
+/*건의함 로그인창 위치, 레이아웃 끝*/
 
+/*건의함제외 나머지창 위치, 레이아웃*/
 .qss-wrap,
 .hsotal-wrap,
 .modal-wrap,
@@ -79,14 +142,6 @@
 
 }
 
-#tablewrapper,
-#tablewrapper2{
-   width: 600px;
-    height: 400px;
-    overflow: auto;
-    position: relative;
-}
-
 .qs-wrap,
 .sotal-wrap,
 .login-wrap,
@@ -101,8 +156,35 @@
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .1);
   border-radius: 25px;
 }
+/*건의함제외 나머지창 위치, 레이아웃끝*/
 
-/* 배경 투명화 및 이미지정렬 */
+/*건의함 회원목록 테이블 크기 및 스크롤*/
+#tablewrapper,
+#tablewrapper2{
+   width: 600px;
+    height: 400px;
+    overflow: auto;
+    position: relative;
+}
+
+
+/*건의함 회원목록 테이블 크기 및 스크롤 끝*/
+
+
+/* 모달창 배경 투명화 및 이미지정렬 */
+
+.qs-form .input,
+.qs-form .button,
+.sotal-form .group .input,
+.sotal-form .group .button,
+.search-in-htm .group .input,
+.login-form .group .input,
+.login-form .group .button {
+  border: none;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, .1);
+}
+
 .gs-html,
 .qs-html,
 .sotal-html,
@@ -115,7 +197,9 @@
   background: rgba(31, 37, 74, .9);
   border-radius: 20px;
 }
+/* 모달창 배경 투명화 및 이미지정렬 끝 */
 
+/*----------------건의함 회원목록 버튼--------------*/
 #messagebtn,
 #memberbtn {
   bottom: 20%;
@@ -134,25 +218,27 @@
   padding: 0px 10px;
   margin-bottom: 15px;
 }
-
-
 #messagebtn:hover,
 #memberbtn:hover{
   box-shadow: 0 0 10px 0 rgb(59, 59, 252) inset, 0 0 10px 4px rgb(59, 59, 252);
 }
-/* 화면전환 애니메이션 */
+/*----------------건의함 회원목록 버튼 끝------------*/
+
+/* 건의함 화면전환 애니메이션 */
 .gs-html .gs-in-htm,
 .gs-html .gs-up-htm {
-	top: 0;
-  	left: 0;
-  	right: 0;
-  	bottom: 0;
-  	position: absolute;
-  	transform: rotateY(180deg);
-  	backface-visibility: hidden;
+   top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     position: absolute;
+     transform: rotateY(180deg);
+     backface-visibility: hidden;
 }
+/* 화면전환 애니메이션 끝 */
 
 
+/* 로그인창 후스넘버 화면전환 애니메이션 */
 .login-html .sign-in-htm,
 .login-html .sign-up-htm,
 .whos-html .search-in-htm,
@@ -166,21 +252,9 @@
   backface-visibility: hidden;
   transition: all .4s linear;
 }
+/* 로그인창 후스넘버 화면전환 애니메이션 끝 */
 
-/* 체크박스 지우기 */
-.gs-html .gs-up,
-.gs-html .gs-in,
-.qs-html .qs-in,
-.sotal-html .sign-in,
-.login-html .sign-in,
-.login-html .sign-up,
-.whos-html .search-in,
-.whos-html .search-up
-{
-  display: none;
-}
-
-/* 까먹음 */
+/* 모달창 텍스트 모두 대문자로 변경 */
 .gs-html .tab,
 .qs-html .tab,
 .sotal-html .tab,
@@ -192,6 +266,8 @@
 .login-form .group .button {
   text-transform: uppercase;
 }
+
+/* 모달창 텍스트 모두 대문자로 변경 끝*/
 
 /* 메뉴 클릭시 효과 및 배치 */
 .gs-html .tab,
@@ -207,7 +283,6 @@
   border-bottom: 2px solid transparent;
 }
 
-/* 메뉴 클릭시 효과 */
 .gs-html .gs-up:checked+.tab,
 .gs-html .gs-in:checked+.tab,
 .qs-html .qs-in:checked+.tab,
@@ -219,6 +294,8 @@
   color: #fff;
   border-color: #1161ee;
 }
+
+/* 메뉴 클릭시 효과 및 배치 끝 */
 
 /* 로그인폼 속성 */
 .gs-form,
@@ -232,8 +309,6 @@
   transform-style: preserve-3d;
 }
 
-
-/* 로그인폼 요소 배치 */
 .qs-in-htm .group,
 .search-in-htm .group {
   margin-top: 30px;
@@ -250,7 +325,9 @@
   margin-top: 10px;
 }
 
-/* 번호검색창+검색버튼+텍스트 에어리어 */
+/* 로그인폼 속성 끝*/
+
+/* 후스넘버창+검색버튼+텍스트 에어리어 */
 .qs-in-htm .group .input{
   float: left;
   width: 100%;
@@ -284,7 +361,6 @@
   display: block;
 }
 
-/* 텍스트에어리어 크기 및 색상 */
 .qs-in-htm .group textarea,
 .search-in-htm .group textarea {
   border: none;
@@ -293,7 +369,9 @@
   background: rgba(255, 255, 255, .1);
   height: 300px;
 }
+/* 후스넘버창+검색버튼+텍스트 에어리어 끝 */
 
+/* 버튼들 텍스트컬러 */
 .qs-form .button,
 .sotal-form .group .input,
 .login-form .group .label,
@@ -303,27 +381,19 @@
   color: #fff;
   display: block;
 }
-
-/* 검색창 배경 및 테두리 둥글 및 크기 */
-.qs-form .input,
-.qs-form .button,
-.sotal-form .group .input,
-.sotal-form .group .button,
-.search-in-htm .group .input,
-.login-form .group .input,
-.login-form .group .button {
-  border: none;
-  padding: 15px 20px;
-  background: rgba(255, 255, 255, .1);
-}
+/* 버튼들 텍스트컬러 끝 */
 
 
-/* 로그인창 글씨 */
+
+
+/* 로그인창 개인정보 수정 라벨글씨 */
 .sotal-form .group .label,
 .login-form .group .label {
   color: #aaa;
   font-size: 12px;
 }
+/* 로그인창 개인정보 수정 라벨글씨끝 */
+
 /* 버튼 색상 */
 .sotal-form .group .button,
 .search-form .group .button,
@@ -336,11 +406,11 @@
 }
 
 .qs-form .button{
-	border-color: rgb(59, 59, 252);
-  	color: #fff;
-  	box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
-  	transition: all 150ms ease-in-out;
-  	margin-top: 5%;
+   border-color: rgb(59, 59, 252);
+     color: #fff;
+     box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
+     transition: all 150ms ease-in-out;
+     margin-top: 5%;
 }
 
 #su {
@@ -350,12 +420,6 @@
   display: block;
 }
 
-#tal {
-  float:right;
-  width: 40%;
-  color: #fff;
-  display: block;
-}
 
 .sotal-up-htm .group {
   margin-top: 30px;
@@ -372,7 +436,7 @@
 
 
 
-/* 화면 전환 */
+/* 로그인창, 후스넘버, 건의함 화면 전환효과 축 */
 .gs-html .gs-in:checked+.tab+.gs-up+.tab+.gs-form .gs-in-htm,
 .whos-html .search-in:checked+.tab+.search-up+.tab+.search-form .search-in-htm,
 .login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
@@ -383,42 +447,4 @@
 .login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
   transform: rotate(0);
 }
-
-/* 아래 줄 */
-.hr {
-  height: 2px;
-  margin: 60px 0 50px 0;
-  background: rgba(255, 255, 255, .2);
-}
-
-/* 플레이스홀더 컬러 */
-textarea::placeholder,
-input::placeholder {
-  color: #ccc;
-  font-weight: bold;
-
-}
-textarea::placeholder,
-input::-webkit-input-placeholder {
-  color: #ccc;
-  font-weight: bold;
-}
-
-input:-ms-input-placeholder {
-  color: #ccc;
-  font-weight: bold;
-}
-
-/* --------------------------------------------------------------------------- */
-
-body {
-  margin: 0;
-  background: #fffefe;
-  font: 600 16px/18px 'Open Sans', sans-serif;
-}
-
-*,
-:after,
-:before {
-  box-sizing: border-box
-}
+/* 로그인창, 후스넘버, 건의함 화면 전환효과 축 끝 */
