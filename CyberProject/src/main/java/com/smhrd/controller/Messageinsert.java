@@ -16,6 +16,7 @@ public class Messageinsert implements ICommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
 		

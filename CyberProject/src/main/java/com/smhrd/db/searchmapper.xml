@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchmapper">
+	<!-- namespace : mapper 구별 / id : 각 sql 구별 -->
+	<insert id="searchInsert" parameterType="com.smhrd.model.searchVO">
+		insert into t_search values
+		(idx.nextVal,#{phone},sysdate,#{u_id},#{info})
+	</insert>
+	<select id="searchList" parameterType="String" resultType="com.smhrd.model.searchVO">
+		select * from t_search where u_id = #{u_id} order by day desc
+	</select>
+	<delete id="searchlistDelete" parameterType="String">
+		delete from t_search where u_id = #{u_id}
+	</delete>
+	</mapper>

@@ -8,44 +8,39 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.db.SqlSessionManager;
 
-public class messageDAO {
-	
+public class searchDAO {
+
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	private SqlSession session;
-
-	public int insert(messageVO vo) {
+	
+	public int searchInsert(searchVO vo) {
+		
+		session = sqlSessionFactory.openSession(true);
 		
 		int res = 0;
 		
-		session = sqlSessionFactory.openSession(true);
-		
-		res = session.insert("insert", vo);
+		res = session.insert("searchInsert",vo);
 		
 		session.close();
 		
 		return res;
 	}
 
-	public ArrayList<messageVO> messageselect() {
-		
+	public ArrayList<searchVO> searchList(String u_id) {
+		// TODO Auto-generated method stub
 		session = sqlSessionFactory.openSession(true);
-		
-		List<messageVO> list = session.selectList("messageselect");
-		
+		List<searchVO> list = session.selectList("searchList",u_id);
 		session.close();
-		
-		return (ArrayList<messageVO>)list;
+		return (ArrayList<searchVO>)list;
 	}
 
-	public int messageremove(int idx) {
-		
+	public int searchlistDelete(String u_id) {
+		// TODO Auto-generated method stub
 		session = sqlSessionFactory.openSession(true);
-		
-		int res = session.delete("messageremove",idx);
-		
+		int res = 0;
+		res = session.delete("searchlistDelete",u_id);
 		session.close();
 		
 		return res;
 	}
-
 }

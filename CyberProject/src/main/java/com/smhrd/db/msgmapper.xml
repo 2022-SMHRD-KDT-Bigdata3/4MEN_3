@@ -6,4 +6,11 @@
 			values(idx.nextval, #{title}, #{contents}, sysdate)
 	</insert>
 
+	<select id="messageselect" parameterType="String" resultType="com.smhrd.model.messageVO">
+		select * from T_MESSAGE order by day desc
+	</select>
+	
+	<delete id="messageremove" parameterType="int">
+		delete from T_MESSAGE where idx = #{idx}
+	</delete>
 </mapper>

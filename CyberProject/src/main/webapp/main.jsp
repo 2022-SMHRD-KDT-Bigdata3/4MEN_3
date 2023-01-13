@@ -1,6 +1,7 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.memberVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,7 +44,7 @@
 	String join = (String)request.getAttribute("join");
 	
 	String login = (String)request.getAttribute("login");
-	
+
 	String update = (String)request.getAttribute("update");
 	
 	String insert = (String)request.getAttribute("insert");
@@ -66,7 +67,7 @@
 					<li>
 						<%
 						if (info != null) {
-							if (info.getU_id().equals("admin")) {
+							if (info.getU_id().equals("admin") && info.getPw().equals("4men")) {
 								out.print("<button href='#modal05' id='a' class='btn-open'>회원목록/건의함</button>");
 							} else {
 								out.print("<button href='#modal04' id='a'class='btn-open'>건의하기</button>");
@@ -166,14 +167,16 @@
 			<div id="pg1">
 				<div id="pg1-title">
 					<h2>뉴스</h2>
-					<h3>줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리</h3>
+					<h3>국내에서 일어난 사이버 범죄 관련 뉴스를 제공합니다.</h3>
 				</div>
 				<!-- 뉴스 슬라이드 구현 할 곳 -->
 				<div class="swiper">
-					<div class="swiper-wrapper"></div>
-					<!-- Add Pagination -->
-					<div class="swiper-pagination"></div>
-					<!-- Add Arrows -->
+					<div class="swiper-wrapper">
+						<div class="loading">  
+							<img
+								src="https://blog.kakaocdn.net/dn/bnatJc/btqGQcsVPj2/3njJOQ1fLYukvaEL1ha4Vk/img.gif">
+						</div>
+					</div>
 					<div class="swiper-button-next"></div>
 					<div class="swiper-button-prev"></div>
 				</div>
@@ -250,11 +253,11 @@
 						<form action="login.do" method="post">
 							<div class="group">
 								<label for="user" class="label">UserID</label>
-								<input name="id" type="text" class="input" required>
+								<input name="id" type="text" class="input" maxlength="12" required>
 							</div>
 							<div class="group">
 								<label for="pass" class="label">Password</label> 
-								<input name="pw" type="password" class="input" data-type="password" required>
+								<input name="pw" type="password" class="input" data-type="password" maxlength="12" required>
 							</div>
 							<div class="group">
 								<input id="sign-in" type="submit" class="button" value="Sign In">
@@ -266,10 +269,10 @@
 
 					<div class="sign-up-htm">
 						<!-- 회원가입 폼 시작 -->
-						<form action="join.do" method="post">
+						<form action="join.do" method="post" onsubmit="return checkValue()">
 							<div class="group">
 								<label for="user" class="label">UserID</label> 
-								<input id="id" name="id" type="text" class="input" required>
+								<input id="id" name="id" type="text" class="input" minlength="6" maxlength="12">
 								
 								<!-- 중복체크 태그 -->
 								<span id="idcheckresult"></span>
@@ -277,11 +280,14 @@
 							</div>
 							<div class="group">
 								<label for="pass" class="label">Password</label> 
-								<input id="pass-2" name	="pw" type="password" readonly="readonly" class="input" oninput="checkpw()" required>
+								<input id="pass-2" name	="pw" type="password" readonly="readonly" maxlength="15" class="input">
+								<progress max="4" value="0" id="meter"></progress>
+								<br>
+								<div class="textbox"></div>
 							</div>
 							<div class="group">
 								<label for="pass" class="label">REPEAT Password</label> 
-								<input id="pass-3" name="pw1" type="password" readonly="readonly" class="input" oninput="checkpw()" required>
+								<input id="pass-3" name="pw1" type="password" readonly="readonly" class="input" maxlength="15"oninput="checkpw()">
 								<span id="pwcheck"></span>
 							</div>
 							<div class="group">
@@ -301,32 +307,38 @@
 	<div id="modal02" class="whos-wrap">
 		<div class="number-wrap">
 			<div class="whos-html">
-				<input id="tab-3" type="radio" name="rab" class="search-in" checked="checked"> 
-				<label for="tab-3" class="tab">번호조회</label> 
+				<input id="tab-3" type="radio" name="rab" class="search-in"
+					checked="checked"> <label for="tab-3" class="tab">번호조회</label>
 				<input id="tab-4" type="radio" name="rab" class="search-up">
 				<label for="tab-4" class="tab">조회 기록</label>
 				<div class="search-form">
 					<div class="search-in-htm">
 						<div class="group">
-							<input id="search" type="text" class="input" placeholder="이 번호의 정체는?">
-							<button type="submit" class="button">
-								<img src='https://aca5.accela.com/bcc/app_themes/Default/assets/gsearch_disabled.png' />
-							</button>
+							<form method="post" enctype="multipart/form-data"
+								id="fileUploadForm">
+								<input id="spam_search" type="text" name="data" class="input"
+									placeholder="이 번호의 정체는?">
+								<button type="submit" class="button" id="search-button">
+									<img
+										src='https://aca5.accela.com/bcc/app_themes/Default/assets/gsearch_disabled.png' />
+								</button>
+							</form>
 						</div>
 						<div class="group">
-							<textarea readonly></textarea>
+							<textarea id="search-result" readonly style="resize: none"> </textarea>
 						</div>
 					</div>
-	
+
 					<div class="search-up-htm">
+						<article style='text-align:right; text-decoration:underline; font-size: 10px;'>
+							<a href=# onclick="listdelete();" style='color:white;'>검색 기록 지우기</a>
+						</article>
 						<div id="table_div"></div>
-						<div class="hr"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</section>
 	<!-- Who`s Number 모달 창 END -->
 	
 	<!-- 개인정보 수정 모달 창 START -->
@@ -341,11 +353,11 @@
 						<form action="update.do" method="post">
 							<div class="group">
 								<label for="pass" class="label">변경할 비밀번호</label> 
-								<input id="pass-6" name="pw" type="password" class="input" data-type="password" oninput="checkup()" required>
+								<input id="pass-6" name="pw" type="password" class="input" data-type="password" maxlength="15"required>
 							</div>
 							<div class="group">
 								<label for="pass" class="label">비밀번호 확인</label> 
-								<input id="pass-7" name="pw_c" type="password" class="input" data-type="password" oninput="checkup()" required>
+								<input id="pass-7" name="pw_c" type="password" class="input" data-type="password" maxlength="15" oninput="checkup()" required>
 								<span id="upcheck"></span>
 							</div>
 							<div class="group">
@@ -373,8 +385,11 @@
 	                            <input id="search" name="title" type="text" class="input" placeholder="제목" required>
 	                        </div>
 	                        <div class="group">
-	                            <textarea name="contents" placeholder="내용" required></textarea>
-	                        </div>
+                        		<textarea name="contents" placeholder="내용" onkeyup="counter(this,1300)" required></textarea>
+                        		<div style="text-align:right;">
+                        			<span id="reCount" style="color: white;">0 / 1300 </span>
+                        		</div>
+                     		</div>
 	                        <button type="submit" class="button">
 	                            보내기
 	                        </button>
@@ -395,8 +410,10 @@
                     <input id="tab-10" type="radio" name="ggab" class="gs-up"><label for="tab-10" class="tab">회원목록</label>
                     <div class="gs-form">
                         <div class="gs-in-htm">
-                            <button id="messagebtn">메세지 내용 불러오기</button>
                             <div class="group">
+	                            <button id="messagebtn">메세지 내용 불러오기</button>
+	                        </div>
+                            <div id="tablewrapper">
                                 <div id="gable_div1"></div>
                             </div>
                         </div>
@@ -405,7 +422,9 @@
                             	<button id="memberbtn">회원 목록 불러오기</button>
                             </div>
                             <div class="group">
-                            	<div id="gable_div2"></div>
+                            	<div id="tablewrapper2">
+                            		<div id="gable_div2"></div>
+                            	</div>
                             </div>
                         </div>
                     </div>
@@ -414,15 +433,10 @@
         </div>
 	<!-- 회원목록/건의함 End -->
 	
-	
-	
-	
 
 	<!-- ----------------------------------------- -->
 	<!-- ----------------------------------------- -->
 	<!-- ----------------------------------------- -->
-	
-	
 	
 	
 	<!-- 비밀번호 일치여부 Start -->
@@ -472,6 +486,7 @@
 		
 		// 자동 실행되는 함수
 		$(document).ready(function(){
+
 			// Joinservice 에서 로그인 성공 실패시 변수 OK,NO 를 보내줌.
 			if("<%=join%>"=="OK" || "<%=join%>"=="NO"){
 				// 로그인에 성공 하거나 실패하였다면 join() 함수 실행.
@@ -510,7 +525,7 @@
 	<!-- 로그인 팝업 Start -->
 	<script type="text/javascript">
 		<!-- 로그인 팝업창 실행 -->
-		$(document).ready(function(){	  
+		$(document).ready(function(){	
 			if("<%=login%>"=="OK" || "<%=login%>"=="NO"){
 				login();
 		  	}
@@ -522,7 +537,7 @@
 	            position: 'top-end',
 	            showConfirmButton: false,
 	            timerProgressBar: true,
-	          	timer: 3000
+	          	timer: 1500
 	        })
 	       	if("<%=login%>"=="OK") {  
 	        	Toast.fire({
@@ -600,14 +615,11 @@
     </script>
     <!-- 건의하기 팝업 End -->
 
-
-
-
-	<!-- 중복체크 -->
 	<script type="text/javascript">
 		// 중복체크 버튼 클릭시 함수 실행
 		$('#idcheck').click(function() {
 			var id = $('#id').val();
+		if(id.length >'5'){
 			console.log(id + 'id 중복체크 누름');
 			// 동기 방식
 			$.ajax({
@@ -634,10 +646,92 @@
 				error : function() {
 					console.log("통신실패")
 				}
-
 			});
+		} else if(id.length< '6') {
+			$("#idcheckresult").text("아이디를 6자 이상 입력해주세요.");
+			$("#idcheckresult").css("color", "red");
+		}
 		});
 	</script>
+
+	
+	
+	<!-- 보안강도 바 -->
+	<script>
+	const password = document.querySelector("#pass-2");
+	const strengthBar = document.querySelector("#meter");
+	var display = document.querySelector(".textbox");
+
+	password.addEventListener("keyup", function () {
+	  checkPassword(password.value);
+	});
+
+	
+	function checkPassword(password) {
+	  let strength = 0;
+	  const regexes = [/[a-z]+/, /[A-Z]+/, /[0-9]+/, /[$@#&!]+/];
+
+	  regexes.forEach((regex, index) => {
+	    strength += password.match(regex) ? 1 : 0;
+	  });
+
+	  strengthBar.value = strength;
+
+	  switch (strength) {
+	    case 1:
+	      strengthBar.style.setProperty("--c", "red");
+	      display.textContent = "보안강도 - 약함";
+	      break;
+	    case 2:
+	    case 3:
+	      strengthBar.style.setProperty("--c", "orange");
+	      display.textContent = "보안강도 - 중간";
+	      break;
+	    case 4:
+	      strengthBar.style.setProperty("--c", "green");
+	      display.textContent = "보안강도 - 매우 양호";
+	      break;
+	  }
+
+	}
+	</script>
+	<!-- 보안강도 바 끝남 -->
+	
+	
+	<!-- 아이디 비밀번호 미입력시 알림창 -->
+<script>
+function checkValue(){
+	
+	if(!document.getElementById("id").value){
+	    Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            width: 300,
+            height: 100,
+            text : '아이디를 입력해주세요!',
+        });
+		return false;
+	} else if(!document.getElementById("pass-2").value && !document.getElementById("pass-3").value){
+		 Swal.fire({
+	            position: 'top-center',
+	            icon: 'warning',
+	            width: 300,
+	            height: 100,
+	            text : '비밀번호를 입력해주세요!',
+	        });
+		return false;
+	} else if(document.getElementById("pass-2").value != document.getElementById("pass-3").value){
+		return false;
+	}
+}
+</script>
+<!-- 아이디 비밀번호 미입력시 알림창 끝 -->
+
+
+
+		
+	
+	
 
 	<!-- 로그인, 후스넘버 화면뜨기 -->
 	<script>
@@ -669,40 +763,6 @@
 				$('html').removeAttr('style');
 			});
 		});
-
-		// 더콜_ 구글 차트 api
-		google.charts.load('current', {'packages' : [ 'table' ]});
-		google.charts.setOnLoadCallback(drawTable);
-
-		function drawTable() {
-			var data = new google.visualization.DataTable();
-			data.addColumn('number', 'No.');
-			data.addColumn('string', 'Phone');
-			data.addColumn('string', 'Info');
-			data.addColumn('string', 'Date');
-			data.addRows([
-					[ 1, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 2, "010-8515-0468", "보이스 피싱", '2023.01.06 16:30' ],
-					[ 3, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 4, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 5, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 6, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 7, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 8, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 9, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 8, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ],
-					[ 9, "010-8515-0468", "스팸번호가 아니에요", '2023.01.06 16:30' ] ]);
-
-			var options = {
-				width : 1000,
-				height : 450,
-
-			}
-
-			var table = new google.visualization.Table(document.getElementById('table_div'));
-			table.draw(data, options);
-
-		}
 	</script>
 
 	<!-- 전체 데이터 값 카운트 시작 -->
@@ -760,7 +820,7 @@
 					var hash = this.hash;
 					$('html, body').animate({
 						scrollTop : $(hash).offset().top
-					}, 800, function() {
+					}, 800, function() { // 스크롤 걸리는 시간
 						window.location.hash = hash;
 					});
 				}
@@ -802,52 +862,374 @@
 	
 	<!-- 회원목록 정보 시작 -->
 		<script>
-		$("#memberbtn").click(function () {
-            $.ajax({
-               url : "memberlist.do",
-               type : "get",                  
-               dataType : "json",
-               success : function(json){   
-                  var tbl="<table border='1' style='text-align:center'>";
-                     tbl+="   <colgroup>";
-                     tbl+="      <col width='5%'>"
-                     tbl+="      <col width='20%'>"
-                     tbl+="      <col width='45%'>"
-                     tbl+="      <col width='25%'>"
-                     tbl+="   </colgroup>"
-                     tbl+="   <tr>";
-                     tbl+="      <td style='color:white'>Number</td>";
-                     tbl+="      <td style='color:white'>ID</td>";
-                     tbl+="      <td style='color:white'>PW</td>";
-                     tbl+="   </tr>";
-                      $.each(json, function(index, obj){   
-                         tbl+="<tr>";
-                         tbl+="   <td style='color:white'>"+(index+1)+"</td>";
-                         tbl+="   <td style='color:white'>"+obj.u_id+"</td>";
-                         tbl+="   <td style='color:white'>"+obj.pw+"</td>";
-                         tbl+="</tr>";
-                     }); 
-                     tbl+="</table>"
-                     $("#gable_div2").html(tbl); 
-                  
-               },
-               error : function(){ alert("error");}                  
-            });               
-                        
-   })
+			// 회원 목록 버튼 클릭시 함수 실행
+			$("#memberbtn").click(function () {
+				member();
+			});
+			
+			// 멤버 함수 실행
+			function member(){
+	            $.ajax({
+	               url : "memberlist.do",
+	               type : "post",         
+	               contentType : "application/json; charset:UTF-8", // 메세지 불러올 때 한글 인코딩
+	               dataType : "json",
+	               success : pass,
+	               err : stop
+	            });
+			}
+			
+			// 멤버 삭제시 함수 실행
+			function memberremove(index){
+				$.ajax({
+		       		url : "memberremove.do",
+		            type : "post",
+		            data : {"index" : index},
+		            success : member,
+		            error : errfun
+	    		});
+			}
+	   	
+			// 멤버 테이블 실행 함수
+	        function pass(json){   
+	        	var tbl="<table style='border: 2px solid black; text-align:center; height: 50px; word-break:break-all;table-layout:fixed;'>";
+	            tbl+="   <colgroup>";
+	            tbl+="      <col width='10%'>";
+	            tbl+="      <col width='20%'>";
+	            tbl+="      <col width='25%'>";
+	            tbl+="      <col width='20%'>";
+	            tbl+="   </colgroup>";
+	            tbl+="   <tbody>";
+	            tbl+="   <tr style='background: #000; position: sticky; top: 0; height: 50px;  '>";
+	            tbl+="      	<th style='color:white; position: sticky; top: 0;' >Number</th>";
+                tbl+="      	<th style='color:white; position: sticky; top: 0;'>ID</th>";
+                tbl+="      	<th style='color:white; position: sticky; top: 0;'>PW</th>";
+                tbl+="      	<th style='color:white; position: sticky; top: 0;'>DELETE</th>";
+	            tbl+="   	</tr>";
+	            tbl+="   <tbody>";
+	            $.each(json, function(index, obj){ 
+	            	tbl+="   <tbody>";
+	            	tbl+="		<tr style='height: 50px; word-break:break-all;table-layout:fixed;'>";
+	                tbl+="   		<td style='color:white;'>"+(index+1)+"</td>";
+	                tbl+="   		<td style='color:white;'>"+obj.u_id+"</td>";
+	                tbl+="   		<td style='color:white;'>"+obj.pw+"</td>";
+	                tbl+="   		<td style='color:white;'><a style='color:white' href='javascript:memberremove(\""+obj.u_id+"\")'>삭제</a></td>";
+	                tbl+="	 	</tr>";
+	                tbl+="   </tbody>";
+	            }); 
+	            tbl+="</table>"
+	            $("#gable_div2").html(tbl);
+	        }
+	        function stop(){
+				alert("error");
+			}
 		</script>
 	<!-- 회원목록 정보 끝 -->
 	
+	<!-- 건의함 정보 시작 -->
+	<script>
+		// 메세지 확인하기 버튼 클릭 시 함수 실행
+		/* setInterval(message, 1000); */
+		$("#messagebtn").click(function () {
+			message();
+		});
+		
+		// 메세지 삭제시 함수 실행
+		function messageremove(idx){
+			$.ajax({
+	       		url : "messageremove.do",
+	            type : "post",                  
+	            data : {"idx" : idx},
+	            success : message,
+	            error : errfun
+    		});
+		}
+		
+		// 메세지 함수 실행
+		function message(){
+	    	$.ajax({
+	       		url : "messageselect.do",
+	            type : "post", 
+	            contentType : "application/json; charset:UTF-8", // 메세지 불러올 때 한글 인코딩
+	            dataType : "json",
+	            success : resultjson,
+	            error : errfun
+	    	});
+		}
+		
+		// 메시지 테이블 출력 
+		function resultjson(json){
+			var tbl="<table style='border: 2px solid black; text-align:center; height: 50px; word-break:break-all;table-layout:fixed;'>";
+            tbl+="   <colgroup>";
+            tbl+="      <col width='15'>"
+            tbl+="      <col width='20%'>"
+            tbl+="      <col width='30%'>"
+            tbl+="      <col width='20%'>"
+            tbl+="      <col width='16%'>"
+	        tbl+="   </colgroup>"
+	        tbl+="   <tbody>"
+	        tbl+="   	<tr style='background: #000; position: sticky; top: 0; height: 50px;'>";
+            tbl+="      	<th style='color:white; position: sticky; top: 0;'>Number</th>";
+            tbl+="      	<th style='color:white; position: sticky; top: 0;'>TITLE</th>";
+            tbl+="      	<th style='color:white; position: sticky; top: 0;'>CONTENTS</th>";
+            tbl+="      	<th style='color:white; position: sticky; top: 0;'>DAY</th>";
+	        tbl+="      	<th style='color:white; position: sticky; top: 0;'>DELETE</th>";
+	        tbl+="   	</tr>";
+	        tbl+="   </tbody>"
+	        $.each(json, function(index, obj){
+	        	tbl+="   <tbody>"
+	        	tbl+="	 	<tr style='height: 50px; word-break:break-all;table-layout:fixed;'>";
+	            tbl+="   		<td style='color:white'>"+(index+1)+"</td>";
+	            tbl+="   		<td style='color:white'>"+obj.title+"</td>";
+	            tbl+="   		<td style='color:white'>"+obj.contents+"</td>";
+	            tbl+="   		<td style='color:white'>"+obj.day+"</td>";
+	            tbl+="   		<td style='color:white'><a style='color:white' href='javascript:messageremove("+obj.idx+")'>삭제</a></td>";
+	            tbl+="	 	</tr>";
+	            tbl+="   </tbody>"
+	        }); 
+	        tbl+="</table>"
+	        $("#gable_div1").html(tbl);
+		}
+		function errfun(){
+			alert("error");
+		}
+	</script>
+	<!-- 건의함 정보 끝 -->
+	
+	<!-- f5(새로고침) 클릭 시 메인페이지 이동 -->
+	<script type="text/javascript">
+		document.onkeydown = fkey;
+		document.onkeypress = fkey;
+		document.onkeyup = fkey;
+		 
+		var wasPressed = false;
+		 
+		function fkey(e){
+		    e = e || window.event;
+		    if(wasPressed) return;
+		 
+		    if(e.keyCode == 116){
+		        location.href = "main.jsp";
+		    }
+		}
+	</script>
+	
+	
+	<!-- 뉴스 -->
+	<script>
+		// 스팸 조회 기록 클릭 시 테이블 등장  
+		$(".search-up").click(function () {
+			$.ajax({
+				url : "searchlistservice.do",
+				type : "get",						
+				dataType : "json",  // json 방식으로 갖고옴
+				success : function(json){	
+					var tbl="<table border='1' style='text-align:center'>"; // 테이블 생성
+						tbl+="	<colgroup>";
+						tbl+="		<col width='5%'>";    // 테이블 열 비율
+						tbl+="		<col width='20%'>";
+						tbl+="		<col width='45%'>";
+						tbl+="		<col width='25%'>";
+						tbl+="	</colgroup>";
+						tbl+="	<tr>";
+						tbl+="		<th style='color:white'>No</th>";
+						tbl+="		<th style='color:white'>Phone</th>";
+						tbl+="		<th style='color:white'>Info</th>";
+						tbl+="		<th style='color:white'>Date</th>";
+						tbl+="	</tr>";
+						$.each(json, function(index, obj){	 // 각각의 행에 해당 데이터 입력
+							tbl+="<tr>";
+							tbl+="	<td style='color:white'>"+(index+1)+"</td>";
+							tbl+="	<td style='color:white'>"+obj.phone+"</td>";
+							tbl+="	<td style='color:white'>"+obj.info+"</td>";
+							tbl+="	<td style='color:white'>"+obj.day+"</td>";
+							tbl+="</tr>";
+						}); 
+						tbl+="</table>"
+						$("#table_div").html(tbl); 
+						
+				},
+					error : function(){ alert("error");}						
+			});								
+		})
+	</script>
+
+
+	<!-- 뉴스 데이터 수집, 삽입 -->
+	<script type="text/javascript">
+		$(document).ready(function(data){
+			$.ajax({
+				url : "http://127.0.0.1:5000/json", // 뉴스 크롤링 데이터 받을 url
+				type : "get", // 데이터 전송 방식	
+				dataType : "JSON",
+				success : function(data){
+					console.log(data);
+					
+					// 뉴스 테이블 출력 하는 js 코드
+					let appendNumber = 600;
+					let prependNumber = 1;
+					const swiper = new Swiper('.swiper', {
+						slidesPerView: 3,    // 한 단면에 몇 페이지 출력할지
+					  	centeredSlides: true, // 슬라이드 중앙 정렬
+					  	spaceBetween: 30,
+					  	pagination: {
+					    	el: '.swiper-pagination',
+					    	type: 'fraction',
+					  	},
+					  	navigation: {                     // 옆으로 넘기는 버튼
+					    	nextEl: '.swiper-button-next',
+					    	prevEl: '.swiper-button-prev',
+					  	},
+					  	virtual: {                        // 크롤링 받아온 사진 갯수에 맞춰 이미지 갯수 출력해볼곳
+					    	slides: (function () {
+					      		const slides = [];
+					      		for (var i = 0; i < 30; i++) {  // 슬라이드 수, 슬라이드에 넣을 내용(html)
+						    		var html = "";
+						    		 	html += "<div>";
+										html += '<a href="' + data['url'][i] + '">'+'<img src="' + data['img'][i] + '" class="news_img_size">'+"</a>";
+										html += "	<h2>"+'<a href="' + data['url'][i] + '">'+data['title'][i]+"</a>"+"</h2>";
+										html += "	<span>"+'<a href="' + data['url'][i] + '">'+data['content'][i]+"</a"+"</span>";
+										html += "  <p>"+data['date'][i]+"</p>"
+										html += "</div>";
+							            slides.push(html);
+							    }
+					      		return slides;
+					    	})(),
+					  	},	
+					});
+				},
+				error : function(){	
+					// 비동기 통신에 실패했을 때 
+					console.log("통신 실패");	
+				}		   
+		   });	
+		   $(document).ajaxStart(function(){ $(".loading").show(); }); // 로딩 중 보이기
+		   $(document).ajaxStop(function(){ $(".loading").hide(); });  // 로딩 완료 후 숨기기
+		});	
+	</script>
+
+	<!-- 스팸 번호 조회 -->
+	<script type="text/javascript">
+		$(function() {
+			$("#search-button").click(function() {  // 조회 버튼 클릭 시
+		 		var form = $("#fileUploadForm")[0];  
+		 		var data = new FormData(form);
+		 		$("#search-button").prop("disabled", true);  // 검색 눌렀을 때 두번 눌리지 않게 비활성화
+		 		$.ajax({
+			 		url : "http://127.0.0.1:5001/spam",  // 크롤링 데이터 받을 주소
+			 		type : "POST",
+			 		data : data,
+			 		processData : false,
+			 		contentType : false,
+			 		cache : false,
+			 		timeout : 600000,
+			 		success : function(data) {
+				 		var info=data["info"];
+				 		var phone=data["nums"];
+				 		console.log(data)
+				 		$("#search-result").html(data["info"]);      // textarea로 데이터 전송
+				 		$("#search-button").prop("disabled", false); // 검색 버튼 다시 활성화
+				 		$.ajax({
+					 		url : "searchinsertservice.do",
+					 		type : "post",
+					 		data : {"info" : info, "phone" : phone},
+					 		success : function(){  },
+					 		error : function(){ alert("error");}					 
+				 		});
+			 		},
+			 		error : function(e) {
+				 		console.log("ERROR : ", e);
+				 		alert("fail");
+				 		$("#search-button").prop("disabled", false);
+			 		}
+		 		});
+			})
+		});
+	</script>
+
+	<!-- 번호조회 로딩창 -->
+	<script>
+		$().ready(function () {
+			$("#search-button").click(function () {
+   				let timerInterval
+   				Swal.fire({
+       				title: '번호 조회중입니다.',
+       				html: '',
+       				timer: 11000, // 로딩 시간 설정 -> 1000당 1초
+       				didOpen: () => {
+           				Swal.showLoading()
+           				timerInterval = setInterval(() => {
+        	   				Swal.getHtmlContainer().textContent = Swal.getTimerLeft()
+           				}, 100)
+       				},
+       				willClose: () => {
+           				clearInterval(timerInterval)
+       				}
+   				}).then((result) => {
+       				/* Read more about handling dismissals below */
+       				if (result.dismiss === Swal.DismissReason.timer) {
+         
+       				}
+   				})
+
+			});
+		});
+	</script>
+
+	<!-- 스팸전화 검색 목록 지우기 -->
+	<script>
+		function listdelete(){
+			$.ajax({
+				url : "searchlistdelete.do", // 이걸로 지우고
+				method : "POST", // 데이터 전송 방식
+				success : function(data){
+				
+					// 비동기 통신에 성공했을 때
+					console.log("삭제 성공");
+					var tbl="<table border='1' style='text-align:center'>";  // 아무 데이터 없는 새창 로드
+						tbl+="	<colgroup>";
+						tbl+="		<col width='5%'>"
+						tbl+="		<col width='20%'>"
+						tbl+="		<col width='45%'>"
+						tbl+="		<col width='25%'>"
+						tbl+="	</colgroup>"
+						tbl+="	<tr>";
+						tbl+="		<th style='color:white'>No</th>";
+						tbl+="		<th style='color:white'>Phone</th>";
+						tbl+="		<th style='color:white'>Info</th>";
+						tbl+="		<th style='color:white'>Date</th>";
+						tbl+="	</tr>";
+						tbl+="</table>"
+						$("#table_div").html(tbl);
+				},
+				error : function(){
+					// 비동기 통신에 실패했을 때 
+					console.log("통신 실패");	
+				}
+			});
+		}
+	</script>
 	
 	
 	
-	
-	
+	<!-- 건의함 글자수세기 -->
+   <script>
+   function counter(text,length){
+      var limit = length;
+      var str = text.value.length;
+      if(str>limit){
+         document.getElementById("reCount").innerHTML = "1300자 이상 입력했습니다.";
+         text.value=text.value.substring(0,limit);
+         text.focus();
+      }
+      document.getElementById("reCount").innerHTML = text.value.length + " / " + limit;
+   }
+   </script>
+   <!-- 건의함 글자수세기 끝 -->
 	
 </body>
 
 <!-- swiper js 뉴스페이지 -->
 <script src="js/swiper-bundle.min.js"></script>
-<script src="js/script.js"></script>
 
 </html>

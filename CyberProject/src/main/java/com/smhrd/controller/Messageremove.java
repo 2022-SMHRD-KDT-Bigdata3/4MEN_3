@@ -6,26 +6,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smhrd.model.memberDAO;
+import com.smhrd.model.messageDAO;
 import com.smhrd.pattern.ICommand;
 
-public class Memberremoveservice implements ICommand {
+public class Messageremove implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String id = request.getParameter("index");
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		System.out.println("삭제할 메일 : " + id);
-		
-		memberDAO dao = new memberDAO();
-		int res = dao.memberremove(id);	
+
+		messageDAO dao = new messageDAO();
+		int res = dao.messageremove(idx);
 		
 		if(res > 0) {
-			System.out.println("회원삭제 완료");
+			System.out.println("메세지 삭제 성공");
 		} else {
-			System.out.println("회원삭제 실패");
+			System.out.println("메세지 삭제 실패");
 		}
 		
 		return null;

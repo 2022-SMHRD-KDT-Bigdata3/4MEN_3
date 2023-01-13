@@ -26,6 +26,6 @@
 	<mappers>
 		<mapper resource="com/smhrd/db/mapper.xml" />
 		<mapper resource="com/smhrd/db/msgmapper.xml" />
-		
+		<mapper resource="com/smhrd/db/searchmapper.xml" />
 	</mappers>
 </configuration>

@@ -19,6 +19,8 @@ public class Messageselect implements ICommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		response.setCharacterEncoding("UTF-8");
+		
 		System.out.println("메세지 보기 기능");
 		
 		messageDAO dao = new messageDAO();
@@ -34,7 +36,7 @@ public class Messageselect implements ICommand {
 		System.out.println(result);
 		out.print(result);
 		
-		return "messageselect.do";
+		return null;
 	}
 
 }

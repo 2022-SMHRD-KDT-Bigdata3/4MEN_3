@@ -17,6 +17,8 @@ public class Loginservice implements ICommand{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
@@ -33,9 +35,11 @@ public class Loginservice implements ICommand{
 			
 			// 로그인 성공시 팝업창 뜨기 위해 값을 보내줌
 			request.setAttribute("login", "OK");
+			
 		} else {
 			System.out.println("로그인실패");
 			request.setAttribute("login", "NO");
+
 		}
 		
 		return "main.jsp";

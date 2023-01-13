@@ -15,9 +15,15 @@ import com.smhrd.controller.Logoutservice;
 import com.smhrd.controller.Memberlistservice;
 import com.smhrd.controller.Memberremoveservice;
 import com.smhrd.controller.Messageinsert;
+import com.smhrd.controller.Messageremove;
+import com.smhrd.controller.Messageselect;
+import com.smhrd.controller.Searchinsertservice;
+import com.smhrd.controller.Searchlistdelete;
+import com.smhrd.controller.Searchlistservice;
 import com.smhrd.controller.Updateservice;
 import com.smhrd.model.memberDAO;
 import com.smhrd.model.memberVO;
+import com.smhrd.model.messageDAO;
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +36,7 @@ public class FrontController extends HttpServlet {
 		String path = request.getContextPath();
 		String url = reqUrl.substring(path.length() + 1);
 		System.out.println(url);
-
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		
@@ -75,8 +81,6 @@ public class FrontController extends HttpServlet {
 			
 			Memberremoveservice memberremoveservice = new Memberremoveservice();
 			String moveURL= memberremoveservice.execute(request, response);
-			RequestDispatcher re = request.getRequestDispatcher(moveURL);
-			re.forward(request, response);
 		
 		// 개인정보 수정
 		} else if(url.equals("update.do")) {
@@ -94,11 +98,36 @@ public class FrontController extends HttpServlet {
 			RequestDispatcher re = request.getRequestDispatcher(moveURL);
 			re.forward(request, response);
 		
-		// 건의함(어드민)
+		// 건의함 메세지 보기(어드민)
 		} else if(url.equals("messageselect.do")) {
 			
+			Messageselect messageselect = new Messageselect();
+			String moveURL = messageselect.execute(request, response);		
+		
+		// 건의함 메세지 삭제(어드민)
+		} else if(url.equals("messageremove.do")) {
+			
+			Messageremove messageremove = new Messageremove();
+			String moveURL = messageremove.execute(request, response);	
+		
+		} else if(url.equals("searchinsertservice.do")) {
+			
+			Searchinsertservice searchinsertservice = new Searchinsertservice();	
+			String moveURL = searchinsertservice.execute(request, response);
+			RequestDispatcher re = request.getRequestDispatcher(moveURL);
+			re.forward(request, response);
+			
+		} else if(url.equals("searchlistservice.do")) {
+			
+			Searchlistservice searchlistservice = new Searchlistservice();
+			String moveURL = searchlistservice.execute(request, response);	
+			
+		} else if(url.equals("searchlistdelete.do")) {
+			
+			Searchlistdelete searchlistdelete = new Searchlistdelete();
+			String moveURL = searchlistdelete.execute(request, response);
 			
 		}
-
+	
 	}
 }

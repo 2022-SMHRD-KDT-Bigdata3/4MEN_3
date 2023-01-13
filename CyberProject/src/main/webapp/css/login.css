@@ -12,13 +12,40 @@
   z-index: 999;
 }
 
+#meter {
+    appearance: none;
+    float: right;
+}
+#meter::-webkit-progress-bar {
+    background: #20264A;
+    border-radius: 20px;
+    width: 160px;
+    height: 10px;
+    margin-top: 10px;
+}
+#meter::-webkit-progress-value {
+    border-radius: 20px;
+    background: var(--c, red);
+
+}
+#meter[value]::-webkit-progress-value{
+    transition: width 0.8s;
+}
+
+.textbox{
+	color: #fff;
+	font-size : 14px;
+	float: right;
+	margin-top: 5px;
+}
+
 .ggs-wrap{
   display: none;
   position: fixed;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  width: 1140px;
+  width: 730px;
   background: #fff;
   z-index: 1000;
   border-radius: 25px;
@@ -27,7 +54,7 @@
 
 .gs-wrap{
   margin: auto;
-  max-width: 1140px;
+  max-width: 730px;
   min-height: 670px;
   position: relative;
   background: url("../imges/introbg.jpg") no-repeat;
@@ -50,6 +77,14 @@
   z-index: 1000;
   border-radius: 25px;
 
+}
+
+#tablewrapper,
+#tablewrapper2{
+   width: 600px;
+    height: 400px;
+    overflow: auto;
+    position: relative;
 }
 
 .qs-wrap,
@@ -83,26 +118,28 @@
 
 #messagebtn,
 #memberbtn {
-  bottom: 10%;
+  bottom: 20%;
   position: relative;
   float: right;
-  width: 20%;
+  width: 25%;
   color: #fff;
   display: block;
   border-color: rgb(59, 59, 252);
   box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
   transition: all 150ms ease-in-out;
-  height: 50px;
+  height: 35px;
   border-radius: 10px;
   background: rgba(255, 255, 255, .1);
   border: none;
+  padding: 0px 10px;
+  margin-bottom: 15px;
 }
+
 
 #messagebtn:hover,
 #memberbtn:hover{
   box-shadow: 0 0 10px 0 rgb(59, 59, 252) inset, 0 0 10px 4px rgb(59, 59, 252);
 }
-
 /* 화면전환 애니메이션 */
 .gs-html .gs-in-htm,
 .gs-html .gs-up-htm {
@@ -223,7 +260,7 @@
   border-radius: 10px;
   background: rgba(255, 255, 255, .1);
   border: none;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .search-in-htm .group .input {
   float: left;
@@ -288,7 +325,6 @@
   font-size: 12px;
 }
 /* 버튼 색상 */
-.qs-form .button,
 .sotal-form .group .button,
 .search-form .group .button,
 .login-form .group .button {
@@ -297,6 +333,14 @@
   box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
   transition: all 150ms ease-in-out;
   margin-top: 10%;
+}
+
+.qs-form .button{
+	border-color: rgb(59, 59, 252);
+  	color: #fff;
+  	box-shadow: 0 0 40px 40px rgb(59, 59, 252) inset, 0 0 0 0 rgb(59, 59, 252);
+  	transition: all 150ms ease-in-out;
+  	margin-top: 5%;
 }
 
 #su {

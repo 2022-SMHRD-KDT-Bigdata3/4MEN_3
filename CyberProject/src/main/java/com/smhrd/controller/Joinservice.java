@@ -16,6 +16,8 @@ public class Joinservice implements ICommand{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String pw1 = request.getParameter("pw1");

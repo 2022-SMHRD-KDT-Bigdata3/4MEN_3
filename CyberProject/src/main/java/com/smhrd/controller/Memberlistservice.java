@@ -17,6 +17,10 @@ public class Memberlistservice {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("멤버 보기 기능");
+		
+		response.setCharacterEncoding("UTF-8");
+		
 		memberDAO dao = new memberDAO();
 		ArrayList<memberVO> list = dao.memberlist();
 		
@@ -28,7 +32,6 @@ public class Memberlistservice {
 		Gson gson = new Gson();
 		String result = gson.toJson(list);
 		System.out.println(result);
-		response.setContentType("text/json;charset=UTF-8");
 		out.print(result);
 		
 		return null;
