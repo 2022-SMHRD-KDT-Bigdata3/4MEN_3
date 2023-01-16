@@ -390,7 +390,7 @@
 				</p>
 				<p>
 				누구나 피해자가 될 우려가 있기에 예방방안이 중요하다. 이에 대해 온라인으로 간편하게 신고 가능한
-				<a href="https://ecrm.police.go.kr/minwon/main" style="font-size:25px;">ECRM</a>
+				<a onclick="window.open(this.href, '_blank', 'width=1200, height=1000'); return false;" href="https://ecrm.police.go.kr/minwon/main" style="font-size:25px;">ECRM</a>
 				(사이버 범죄 신고시스템)이라는 온라인 신고 시스템이 있으며, 다양한 신고접수부터 사이버범죄 관련 상담이 가능하다.
 				</p>
 				<div class="topic_Cyber2">
